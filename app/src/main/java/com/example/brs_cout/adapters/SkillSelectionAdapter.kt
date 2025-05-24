@@ -1,61 +1,126 @@
-package com.example.brs_cout.adapters
+package com.example.brs_cout.adapters // დარწმუნდი, რომ პაკეტის სახელი სწორია
 
+import android.util.Log // <-- დაამატე ეს იმპორტი
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brs_cout.R
-import com.example.brs_cout.models.SkillItem
+import com.example.brs_cout.models.ListItem
+
+// ... დანარჩენი იმპორტები
 
 class SkillSelectionAdapter(
-    private val onSkillSelected: (SkillItem, Boolean) -> Unit // Callback for selection changes
-) : ListAdapter<SkillItem, SkillSelectionAdapter.SkillViewHolder>(SkillDiffCallback()) {
+    private val onSkillSelected: (ListItem.SkillItem, Boolean) -> Unit,
+    private val onShowMoreClicked: () -> Unit
+) : ListAdapter<ListItem, RecyclerView.ViewHolder>(ListItemDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkillViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.skill_item, parent, false)
-        return SkillViewHolder(view)
+    companion object {
+        private const val VIEW_TYPE_SKILL_ITEM = 0
+        private const val VIEW_TYPE_SHOW_MORE = 1
     }
 
-    override fun onBindViewHolder(holder: SkillViewHolder, position: Int) {
-        val skill = getItem(position)
-        holder.bind(skill, onSkillSelected)
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)) {
+            is ListItem.SkillItem -> VIEW_TYPE_SKILL_ITEM
+            ListItem.ShowMoreItem -> VIEW_TYPE_SHOW_MORE
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_SKILL_ITEM -> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.skill_item, parent, false)
+                SkillViewHolder(view)
+            }
+            VIEW_TYPE_SHOW_MORE -> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_show_more_button, parent, false)
+                // !!! დაამატე ეს Log შეტყობინებები !!!
+                Log.d("AdapterDebug", "onCreateViewHolder: Inflating VIEW_TYPE_SHOW_MORE. View is null: ${view == null}")
+                if (view != null) {
+                    Log.d("AdapterDebug", "Inflated view: ${view.javaClass.simpleName} (ID: ${view.id}), parent: ${view.parent?.javaClass?.simpleName}")
+                    if (view is ViewGroup) {
+                        Log.d("AdapterDebug", "Inflated view has children: ${view.childCount}")
+                        for (i in 0 until view.childCount) {
+                            val child = view.getChildAt(i)
+                            Log.d("AdapterDebug", "Child $i: ${child.javaClass.simpleName}, ID: ${child.id}, text: ${if (child is Button) child.text else "N/A"}")
+                        }
+                    }
+                }
+                ShowMoreViewHolder(view)
+            }
+            else -> throw IllegalArgumentException("Unknown view type: $viewType")
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is SkillViewHolder -> {
+                val skill = getItem(position) as ListItem.SkillItem
+                holder.bind(skill, onSkillSelected)
+            }
+            is ShowMoreViewHolder -> {
+                holder.bind(onShowMoreClicked)
+            }
+        }
     }
 
     class SkillViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val skillName: TextView = itemView.findViewById(R.id.text_skill_name)
         val skillCheckbox: CheckBox = itemView.findViewById(R.id.checkbox_skill)
 
-        fun bind(skill: SkillItem, onSkillSelected: (SkillItem, Boolean) -> Unit) {
+        fun bind(skill: ListItem.SkillItem, onSkillSelected: (ListItem.SkillItem, Boolean) -> Unit) {
             skillName.text = skill.name
             skillCheckbox.isChecked = skill.isSelected
 
-            // Set a listener for the checkbox
             skillCheckbox.setOnCheckedChangeListener { _, isChecked ->
-                // Update the skill's state (important: update a *copy* or notify parent to update original)
-                // In this setup, we notify the activity/fragment to handle the state change
                 onSkillSelected(skill, isChecked)
             }
 
-            // Also allow clicking the whole item to toggle the checkbox
             itemView.setOnClickListener {
                 skillCheckbox.isChecked = !skillCheckbox.isChecked
-                // The OnCheckedChangeListener will then be triggered
+            }
+        }    }
+
+    class ShowMoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val showMoreButton: Button
+
+        init {
+            // !!! დაამატე ეს Log შეტყობინებები !!!
+            Log.d("ShowMoreVH", "ShowMoreViewHolder constructor called for itemView: ${itemView.javaClass.simpleName}, ID: ${itemView.id}")
+            showMoreButton = itemView.findViewById(R.id.btn_show_more) // <-- ეს არის ხაზი, სადაც ხდება NullPointerException
+            if (showMoreButton == null) {
+                Log.e("ShowMoreVH", "ERROR: btn_show_more not found in the inflated view!")
+            } else {
+                Log.d("ShowMoreVH", "Successfully found btn_show_more.")
+            }
+        }
+
+        fun bind(onShowMoreClicked: () -> Unit) {
+            showMoreButton.setOnClickListener {
+                onShowMoreClicked()
             }
         }
     }
 
-    class SkillDiffCallback : DiffUtil.ItemCallback<SkillItem>() {
-        override fun areItemsTheSame(oldItem: SkillItem, newItem: SkillItem): Boolean {
-            return oldItem.id == newItem.id // Skills are the same if their IDs match
+    class ListItemDiffCallback : DiffUtil.ItemCallback<ListItem>() {
+        override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
+            return when {
+                oldItem is ListItem.SkillItem && newItem is ListItem.SkillItem ->
+                    oldItem.id == newItem.id
+                oldItem is ListItem.ShowMoreItem && newItem is ListItem.ShowMoreItem ->
+                    true // ShowMoreItem ყოველთვის იგივეა
+                else -> false
+            }
         }
 
-        override fun areContentsTheSame(oldItem: SkillItem, newItem: SkillItem): Boolean {
-            // Check if name and selection state are the same
-            return oldItem == newItem // Data class equals() handles this automatically
+        override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
+            return oldItem == newItem // Data class equals() უზრუნველყოფს ამას
         }
     }
 }
