@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.brs_cout.R
 import com.example.brs_cout.models.ListItem
 
-// ... დანარჩენი იმპორტები
-
 class SkillSelectionAdapter(
     private val onSkillSelected: (ListItem.SkillItem, Boolean) -> Unit,
     private val onShowMoreClicked: () -> Unit
