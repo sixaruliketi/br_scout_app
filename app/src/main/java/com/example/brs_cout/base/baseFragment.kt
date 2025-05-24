@@ -1,4 +1,4 @@
-package com.example.brs_cout
+package com.example.brs_cout.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.example.brs_cout.R
 
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
@@ -27,8 +28,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Subclasses can override this method to perform their specific view setup.
-        // The 'binding' property is guaranteed to be non-null here.
+        init()
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -38,7 +38,30 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
 
     fun loadFragment(f: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, f).commit()
+        // Check if the fragment already exists in the FragmentManager
+        // This prevents re-creating it if it's already there
+        val existingFragment = parentFragmentManager.findFragmentByTag(tag)
+
+        if (existingFragment != null && existingFragment.isVisible) {
+            // Fragment is already visible, do nothing
+            return
+        }
+
+        val transaction = parentFragmentManager.beginTransaction()
+
+        if (existingFragment == null) {
+            // Add the fragment if it's not already in the back stack
+            transaction.replace(R.id.main, f, tag)
+            // You might add to back stack if you want to navigate back through fragments
+            // transaction.addToBackStack(null)
+        } else {
+            // If it exists but is not visible, show it (and hide others if necessary)
+            // For simple navigation, replace is often easier to manage
+            transaction.replace(R.id.main, existingFragment, tag)
+        }
+
+        transaction.commit()
     }
+
+    abstract fun init()
 }

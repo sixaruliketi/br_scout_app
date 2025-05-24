@@ -1,7 +1,8 @@
-package com.example.brs_cout
+package com.example.brs_cout.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -14,7 +15,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         return FragmentHomeBinding.inflate(inflater,container,false)
     }
 
-    private fun init(){
+    override fun init(){
 
     }
 

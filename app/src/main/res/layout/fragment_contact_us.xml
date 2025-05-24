@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ContactUsFragment">
+    tools:context=".drawerMenu.ContactUsFragment">
 
     <TextView
         android:layout_width="wrap_content"
