@@ -40,7 +40,6 @@ class SkillSelectionAdapter(
             }
             VIEW_TYPE_SHOW_MORE -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.item_show_more_button, parent, false)
-                // !!! დაამატე ეს Log შეტყობინებები !!!
                 Log.d("AdapterDebug", "onCreateViewHolder: Inflating VIEW_TYPE_SHOW_MORE. View is null: ${view == null}")
                 if (view != null) {
                     Log.d("AdapterDebug", "Inflated view: ${view.javaClass.simpleName} (ID: ${view.id}), parent: ${view.parent?.javaClass?.simpleName}")
