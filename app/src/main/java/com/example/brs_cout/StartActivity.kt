@@ -1,6 +1,7 @@
 package com.example.brs_cout
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment // Import Fragment
@@ -146,8 +148,9 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             R.id.nav_settings -> loadFragment(SettingsFragment(), "settings_tag", addToBackStack = true)
             R.id.nav_contact -> loadFragment(ContactUsFragment(), "contact_tag", addToBackStack = true)
             R.id.nav_logout -> {
-                Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
-                // Implement your logout logic here (e.g., clear user session, navigate to login)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
