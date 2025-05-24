@@ -7,11 +7,23 @@
     android:paddingHorizontal="20dp"
     tools:context=".onBoarding.candidate.CandidateRegisterFragment">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@mipmap/ic_launcher_foreground" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_left"
+            android:background="@null"
+            android:layout_marginTop="10dp"/>
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@mipmap/ic_launcher_foreground" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/registerCandidateFullNameET"

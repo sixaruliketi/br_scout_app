@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brs_cout.R
 import com.example.brs_cout.adapters.SkillSelectionAdapter
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCandidatePersonalInformationBinding
@@ -365,7 +366,15 @@ class CandidatePersonalInformationFragment :
         // Setup button click listener
         nextBtn.setOnClickListener {
             val selectedSkills = fullSkillList.filter { it.isSelected }
-            displaySelectedSkills(selectedSkills)
+//            displaySelectedSkills(selectedSkills) // TODO("ამისი ფუნქცია ქვემოთ წერია და შესაცვლელია")
+
+            parentFragmentManager.beginTransaction().replace(
+                R.id.main,
+                CandidatePersonalInfo2Fragment()
+            ).commit()
+
+            Toast.makeText(requireContext(), "ეს ინფო შეიყრება პროფაილზე", Toast.LENGTH_SHORT).show()
+
             // Here you would typically save 'selectedSkills' to your user's profile
             // e.g., to a database, shared preferences, or send to a server.
         }
