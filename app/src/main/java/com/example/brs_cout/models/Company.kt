@@ -7,7 +7,7 @@ data class Company(
 //    val websiteUrl: String?, // კომპანიის ვებსაიტის URL (არასავალდებულოა)
     val logoUrl: String?, // კომპანიის ლოგოს URL (არასავალდებულოა)
     val description: String?, // კომპანიის მოკლე აღწერა (რაზე მუშაობს, მისი ღირებულებები)
-//    val industry: String?, // ინდუსტრია (მაგ. IT, ფინანსები, ჯანდაცვა)
+    val industry: String?, // ინდუსტრია (მაგ. IT, ფინანსები, ჯანდაცვა)
     val companySize: String?, // კომპანიის ზომა (მაგ. "1-10 თანამშრომელი", "100-500 თანამშრომელი")
     val address: String?, // სრული მისამართი (არასავალდებულოა)
 //    val contactPersonName: String?, // საკონტაქტო პირის სახელი (HR/რეკრუტერი)

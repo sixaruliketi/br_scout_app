@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.BRScoutApp" parent="Base.Theme.BRScoutApp" />
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

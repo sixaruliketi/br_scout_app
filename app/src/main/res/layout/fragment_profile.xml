@@ -1,25 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".home.HomeFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="profile"
-        android:textSize="64sp"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textColor="@color/main_blue"/>
+        android:background="#E0E0E0"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context=".home.HomeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="coming soon!"
-        android:textSize="40sp"
-        android:textColor="@color/main_blue"/>
-</LinearLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-50dp"
+            android:src="@drawable/profile_top_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:foreground="@drawable/image_foreground"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:tint="#B8B8B8" />
+
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Name"
+            android:textColor="@color/main_blue"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/profileImage"
+            app:layout_constraintStart_toStartOf="@id/profileImage"
+            app:layout_constraintTop_toBottomOf="@id/profileImage" />
+
+        <TextView
+            android:id="@+id/profileMinDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="min description / Android Developer / (year of foundation / company size)"
+            android:textColor="@color/main_blue"
+            android:paddingHorizontal="15dp"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@id/profileName"
+            app:layout_constraintStart_toStartOf="@id/profileName"
+            app:layout_constraintTop_toBottomOf="@id/profileName" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/white_round_corners_bg"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileMinDescription">
+
+            <TextView
+                android:id="@+id/profileAboutTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:textColor="@color/main_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/profileBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:lineSpacingExtra="4dp"
+                android:maxLines="5"
+                android:text="this profile is this and this, and it does this and that, also does lot's of other stuff that you don't need to know."
+                android:textColor="@color/main_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/profileVacanciesPosted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vacancies Posted"
+            android:textColor="@color/main_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="@id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profileVacancyRV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/vacancy_item"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="@id/profileVacanciesPosted"
+            app:layout_constraintTop_toBottomOf="@id/profileVacanciesPosted" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

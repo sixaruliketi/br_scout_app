@@ -7,6 +7,7 @@ data class Candidate(
     val phoneNumber: String?, // ტელეფონის ნომერი (არასავალდებულოა, ამიტომ nullable)
 //    val country: String?, // ქვეყანა (არასავალდებულოა)
 //    val city: String?, // ქალაქი (არასავალდებულოა)
+    val currentJobTitle: String?,
     val profilePictureUrl: String?, // პროფილის სურათის URL (არასავალდებულოა)
     val bio: String?, // მოკლე ბიოგრაფია/შესავალი (არასავალდებულოა)
     val yearsOfExperience: Int?, // გამოცდილების წლები (არასავალდებულოა)
