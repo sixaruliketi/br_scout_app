@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.brs_cout.R
 import com.example.brs_cout.StartActivity
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCandidatePersonalInformationBinding
@@ -18,9 +19,7 @@ class CandidatePersonalInformationFragment : BaseFragment<FragmentCandidatePerso
 
     override fun init() = with(binding){
         nextBtn.setOnClickListener {
-            val intent = Intent(requireContext(), StartActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            parentFragmentManager.beginTransaction().replace(R.id.main,CandidateTechSkillsFragment()).commit()
         }
     }
 }

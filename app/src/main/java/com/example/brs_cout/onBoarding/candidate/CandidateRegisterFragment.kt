@@ -17,7 +17,7 @@ class CandidateRegisterFragment : BaseFragment<FragmentCandidateBinding>() {
     override fun init() = with(binding) {
         nextBtn.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.main,
-                CandidateTechSkillsFragment()
+                CandidatePersonalInformationFragment()
             ).commit()
         }
     }
