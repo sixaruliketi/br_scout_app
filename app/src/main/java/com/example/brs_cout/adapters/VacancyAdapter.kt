@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brs_cout.databinding.VacancyItemBinding
+import com.example.brs_cout.models.Company
 import com.example.brs_cout.models.Vacancy
 
 class VacancyAdapter(private val vacancies: MutableList<Vacancy>) : RecyclerView.Adapter<VacancyAdapter.VacancyViewHolder>() {
@@ -13,10 +14,8 @@ class VacancyAdapter(private val vacancies: MutableList<Vacancy>) : RecyclerView
         @SuppressLint("SetTextI18n")
         fun bind(vacancy: Vacancy) = with(binding){
             vacancyJobTitle.text = vacancy.jobTitle
-            vacancyJobCompanyName.text = vacancy.companyId
             vacancyLocation.text = vacancy.location
-            vacancyPostedDate.text = vacancy.postedDate.toString()
-            vacancyIsActive.text = vacancy.isActive.toString()
+            if (vacancy.isActive == true) {vacancyIsActive.text ="active"} else {"not active"}
         }
     }
 

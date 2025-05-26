@@ -19,6 +19,5 @@ data class Vacancy(
     val applicationDeadline: String? = null, // განაცხადების მიღების ბოლო ვადა (Unix timestamp-ში, არასავალდებულოა)
 //    val remoteOption: Boolean, // შესაძლებელია თუ არა დისტანციურად მუშაობა
 
-    val postedDate: Long? = null, // ვაკანსიის გამოქვეყნების თარიღი
-    val isActive: Boolean? = null // არის თუ არა ვაკანსია აქტიური
+    val isActive: Boolean? = true // არის თუ არა ვაკანსია აქტიური
 )

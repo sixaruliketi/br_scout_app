@@ -18,6 +18,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.sql.Time
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -327,16 +328,7 @@ class CreateVacancyFragment : DialogFragment() {
             val requiredLanguages = selectedLanguages.map { ListItem.SkillItem(it) } // აქ!
             val applicationDeadline = vacancyDeadline.text.toString().trim()
 
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd") // ან რაც გაქვს ფორმატი
-            val deadlineTimestamp = try {
-                LocalDate.parse(deadline, formatter).atStartOfDay(ZoneId.systemDefault()).toEpochSecond()
-            } catch (e: Exception) {
-                null // ან დააბრუნე early return-ით თუ სავალდებულოა
-            }
-
-            val postedDateTimestamp = LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond()
-
-            val isActive = deadlineTimestamp?.let { it > postedDateTimestamp } ?: true
+//            val isActive =
 
             var vacancy = Vacancy(
                 id = "", // გენერირდება Firebase-ში push().key-ით
@@ -348,8 +340,7 @@ class CreateVacancyFragment : DialogFragment() {
                 requiredSoftSkills = requiredSoftSkills,
                 requiredLanguages = requiredLanguages,
                 applicationDeadline = applicationDeadline,
-                postedDate = postedDateTimestamp,
-                isActive = isActive
+//                isActive = isActive
             )
 
             val key = dbRef.push().key ?: return@setOnClickListener
