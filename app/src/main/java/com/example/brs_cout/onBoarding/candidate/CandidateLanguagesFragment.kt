@@ -98,9 +98,10 @@ class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBindin
                 "congratulations!\nYou are registered as a candidate",
                 Toast.LENGTH_SHORT
             ).show()
-            val intent = Intent(requireContext(), StartActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            parentFragmentManager.beginTransaction().replace(R.id.main,CandidateRegistrationSuccessPageFragment()).commit()
+//            val intent = Intent(requireContext(), StartActivity::class.java)
+//            startActivity(intent)
+//            requireActivity().finish()
 
         }
     }
