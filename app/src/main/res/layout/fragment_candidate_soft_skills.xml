@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".onBoarding.candidate.CandidateSoftSkillsFragment">
 
     <LinearLayout
@@ -36,13 +37,22 @@
             android:textColor="@color/main_blue"
             android:textSize="18sp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
+        <AutoCompleteTextView
+            android:id="@+id/skillSearchView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/candidate_soft_skills_rv"
-            tools:listitem="@layout/skill_item"
-            tools:itemCount="3"
-            android:layout_marginTop="10dp"/>
+            android:hint="Search skills"
+            android:inputType="text"
+            android:layout_marginTop="20dp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/selectedSkillsChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:singleLine="false"
+            app:chipSpacing="8dp"
+            android:orientation="horizontal"/>
 
 
         <androidx.appcompat.widget.AppCompatButton
