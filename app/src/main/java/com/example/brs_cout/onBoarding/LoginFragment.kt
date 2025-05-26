@@ -8,8 +8,11 @@ import com.example.brs_cout.R
 import com.example.brs_cout.StartActivity
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentLoginBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+
+    private val auth = FirebaseAuth.getInstance()
 
     override fun inflateBinding(
         inflater: LayoutInflater,
@@ -21,18 +24,25 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun init() = with(binding){
         loginBtn.setOnClickListener {
 
-//            val email = loginEmailET.text.toString()
-//            val password = loginPasswordET.text.toString()
-//
-//            if (email.isEmpty() or password.isEmpty()){
-//                Toast.makeText(requireContext(), "email or password are empty", Toast.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
+            val email = loginEmailET.text.toString().trim()
+            val password = loginPasswordET.text.toString().trim()
 
-//            TODO("login logic")
-            val intent = Intent(requireContext(), StartActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            if (email.isEmpty() or password.isEmpty()){
+                Toast.makeText(requireContext(), "email or password are empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
+                if (it.isSuccessful){
+                    val intent = Intent(requireContext(), StartActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
+                } else {
+                    Toast.makeText(requireContext(), it.exception?.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+
+
         }
         loginForgotPasswordTV.setOnClickListener {
 
