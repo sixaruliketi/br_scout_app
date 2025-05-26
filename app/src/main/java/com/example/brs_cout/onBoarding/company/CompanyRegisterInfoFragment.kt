@@ -19,26 +19,31 @@ class CompanyRegisterInfoFragment : BaseFragment<FragmentCompanyRegisterInfoBind
         inflater: LayoutInflater,
         container: ViewGroup?
     ): FragmentCompanyRegisterInfoBinding {
-        return FragmentCompanyRegisterInfoBinding.inflate(inflater,container,false)
+        return FragmentCompanyRegisterInfoBinding.inflate(inflater, container, false)
     }
 
-    override fun init() = with(binding){
+    override fun init() = with(binding) {
         companyRegisterInfoNextBtn.setOnClickListener {
             val email = companyEmailET.text.toString().trim()
             val password = companyPassword.text.toString().trim()
             val repeatPassword = companyRepeatPassword.text.toString().trim()
 
-            if (validatePasswordInput(email, password, repeatPassword)){
-                auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
-                    if (task.isSuccessful){
+            if (validatePasswordInput(email, password, repeatPassword)) {
+                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
 
-                        parentFragmentManager.beginTransaction().replace(R.id.main,CompanyRegisterFragment()).commit()
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.main, CompanyRegisterFragment()).commit()
                     }
 
 
-                    }
+                }
                     .addOnFailureListener { e ->
-                        Toast.makeText(requireContext(), "Registration failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Registration failed: ${e.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
             }
 
@@ -58,12 +63,20 @@ class CompanyRegisterInfoFragment : BaseFragment<FragmentCompanyRegisterInfoBind
 
         // Email validation
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(requireContext(), "Please enter a valid email address", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Please enter a valid email address",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
 
         if (password.length < 6) {
-            Toast.makeText(requireContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Password must be at least 6 characters",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
 

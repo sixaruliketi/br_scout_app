@@ -1,155 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="20dp"
-    android:orientation="vertical"
-    tools:context=".onBoarding.candidate.CandidatePersonalInformationFragment">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-        <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_left"
-        android:background="@null"
-        android:layout_marginTop="10dp"/>
-        <ImageView
-            android:id="@+id/imageView2"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical"
+        tools:context=".onBoarding.candidate.CandidatePersonalInformationFragment">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@mipmap/ic_launcher_foreground" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:src="@drawable/ic_arrow_left" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@mipmap/ic_launcher_foreground" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/registerCandidateFullNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Full Name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/registerCandidatePhoneET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:ems="10"
+            android:hint="Mobile Number"
+            android:inputType="phone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Years Of Experience:"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/yearsOfExperienceET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ems="10"
+                android:hint="4"
+                android:inputType="number"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Job Title:"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/currentJobTitleET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ems="10"
+                android:hint="Android Developer"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Desired Job Title:"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/desiredJobTitleET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ems="10"
+                android:hint="Android Developer"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salary Expectation:"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/salaryExpectationET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ems="10"
+                android:hint="400"
+                android:inputType="numberDecimal"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/isAvailableForRemoteCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Available For Remote" />
+
+        <CheckBox
+            android:id="@+id/isLookingForJobCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Looking For A Job" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Years Of Experience:"
-            android:textSize="16sp" />
+            android:layout_marginTop="10dp"
+            android:text="bio" />
 
         <EditText
-            android:id="@+id/yearsOfExperienceET"
+            android:id="@+id/bioET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:ems="10"
-            android:hint="4"
-            android:inputType="number"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:hint="max 300 symbols"
+            android:maxLength="300" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Desired Job Title:"
-            android:textSize="16sp" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/desiredJobTitleET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:ems="10"
-            android:hint="Android Developer"
-            android:textSize="16sp" />
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/uploadPhotoBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/main_blue"
+                android:paddingHorizontal="5dp"
+                android:text="Upload Photo"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Salary Expectation:"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/salaryExpectationET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:ems="10"
-            android:hint="400"
-            android:inputType="numberDecimal"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <CheckBox
-        android:id="@+id/isAvailableForRemoteCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Available For Remote" />
-
-    <CheckBox
-        android:id="@+id/isLookingForJobCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Looking For A Job" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="bio" />
-
-    <EditText
-        android:id="@+id/bioET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="max 300 symbols"
-        android:maxLength="300" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:text="( optional )" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/uploadPhotoBtn"
-            android:layout_width="wrap_content"
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@color/main_blue"
-            android:paddingHorizontal="5dp"
-            android:text="Upload Photo"
+            android:text="Next"
+            android:layout_marginBottom="120dp"
             android:textAllCaps="false"
             android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:text="( optional )" />
     </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/nextBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/main_blue"
-        android:text="Next"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
-</LinearLayout>
+</ScrollView>

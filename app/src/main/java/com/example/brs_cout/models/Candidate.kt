@@ -17,7 +17,7 @@ data class Candidate(
     val isLookingForJob: Boolean, // აქტიურად ეძებს თუ არა სამსახურს
 
     // უნარების სიები
-    val technicalSkills: List<ListItem.SkillItem>, // არჩეული ტექნიკური უნარები
-    val softSkills: List<ListItem.SkillItem>,     // არჩეული soft უნარები
-    val languages: List<ListItem.SkillItem>
+    val technicalSkills: List<ListItem.SkillItem> ? = null, // არჩეული ტექნიკური უნარები
+    val softSkills: List<ListItem.SkillItem>? = null,     // არჩეული soft უნარები
+    val languages: List<ListItem.SkillItem>? = null
 )

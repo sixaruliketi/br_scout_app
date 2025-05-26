@@ -7,17 +7,22 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brs_cout.R
-import com.example.brs_cout.adapters.SkillSelectionAdapter
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCandidateTechSkillsBinding
+import com.example.brs_cout.models.Candidate
 import com.example.brs_cout.models.ListItem
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class CandidateTechSkillsFragment : BaseFragment<FragmentCandidateTechSkillsBinding>() {
+
+    private val db = FirebaseDatabase.getInstance().getReference("candidates")
+    private val user = FirebaseAuth.getInstance().currentUser!!
 
     private val allTechSkills = listOf(
         "Android", "Kotlin", "Java", "Jetpack Compose", "Firebase", "Room",
@@ -68,9 +73,19 @@ class CandidateTechSkillsFragment : BaseFragment<FragmentCandidateTechSkillsBind
             }
             skillSearchView.setText("") // Clear input
 
-            selectedSkills.joinToString { "," }
+            val skillItems = selectedSkills.map { skill ->
+                ListItem.SkillItem(id = skill)
+            }
 
-            //ატვირთე კანდიდატის ტექნიკური უნარი სტრინგად და წამოღებისას გადააკეთე ლისთადკო
+            db.child(user.uid)
+                .child("technicalSkills")
+                .setValue(skillItems)
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Skills uploaded!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
 
         }
 

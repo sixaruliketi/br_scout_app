@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brs_cout.R
 import com.example.brs_cout.StartActivity
-import com.example.brs_cout.adapters.SkillSelectionAdapter
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCandidateLanguagesBinding
 import com.example.brs_cout.models.ListItem
@@ -16,8 +15,13 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.google.android.material.chip.Chip
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBinding>() {
+
+    private val db = FirebaseDatabase.getInstance().getReference("candidates")
+    private val user = FirebaseAuth.getInstance().currentUser!!
 
     private val allLanguages = listOf(
         "English", "Mandarin Chinese", "Hindi", "Spanish", "French",
@@ -73,10 +77,19 @@ class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBindin
             }
             skillSearchView.setText("") // Clear input
 
-            selectedSkills.joinToString { "," }
+            val skillItems = selectedSkills.map { skill ->
+                ListItem.SkillItem(id = skill)
+            }
 
-            //ატვირთე კანდიდატის ტექნიკური უნარი სტრინგად და წამოღებისას გადააკეთე ლისთადკო
-
+            db.child(user.uid)
+                .child("languages")
+                .setValue(skillItems)
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Skills uploaded!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
         }
 
         registerCandidateBtn.setOnClickListener {

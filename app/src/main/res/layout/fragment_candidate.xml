@@ -26,29 +26,12 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/registerCandidateFullNameET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:hint="Full Name"
-        android:inputType="text" />
-
-    <EditText
         android:id="@+id/registerCandidateEmailET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/registerCandidatePhoneET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Mobile Number"
-        android:inputType="phone" />
 
     <EditText
         android:id="@+id/registerCandidatePasswordET"
