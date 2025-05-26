@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".home.CreateVacancyFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:src="@mipmap/ic_launcher_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/jobDetailsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Job Details"
+            android:textColor="@color/main_blue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/appLogo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/appLogo" />
+
+        <LinearLayout
+            android:id="@+id/vacancyLinearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/appLogo"
+            app:layout_constraintStart_toStartOf="@id/jobDetailsTV"
+            app:layout_constraintTop_toBottomOf="@id/appLogo">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Job Title:"
+                android:textColor="@color/main_blue"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/vacancyJobTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:inputType="text"
+                android:ems="10"
+                android:hint="Android Developer"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/jobDescriptionTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Job Description"
+            android:textColor="@color/main_blue"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout"
+            app:layout_constraintTop_toBottomOf="@id/vacancyLinearLayout" />
+
+        <EditText
+            android:id="@+id/jobDescriptionET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Tbilisi, Georgia"
+            android:hint="enter job description"
+            android:inputType="text"
+            android:maxLength="1500"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@id/vacancyLinearLayout"
+            app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout"
+            app:layout_constraintTop_toBottomOf="@id/jobDescriptionTV" />
+
+        <LinearLayout
+            android:id="@+id/vacancyLinearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/vacancyLinearLayout"
+            app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout"
+            app:layout_constraintTop_toBottomOf="@id/jobDescriptionET">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location:"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/vacancyLocationET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ems="10"
+                android:hint="Tbilisi, Georgia"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/requiredTechnicalSkillsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Select Required Technical Skills"
+            android:textColor="@color/main_blue"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout2"
+            app:layout_constraintTop_toBottomOf="@id/vacancyLinearLayout2" />
+
+        <AutoCompleteTextView
+            android:id="@+id/requiredTechnicalSkillsSearchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Search skills"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@id/vacancyLinearLayout2"
+            app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout2"
+            app:layout_constraintTop_toBottomOf="@id/requiredTechnicalSkillsTV" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/selectedRequiredTechnicalSkillsChipGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:chipSpacing="8dp"
+            app:layout_constraintEnd_toEndOf="@id/requiredTechnicalSkillsSearchView"
+            app:layout_constraintStart_toStartOf="@id/requiredTechnicalSkillsSearchView"
+            app:layout_constraintTop_toBottomOf="@id/requiredTechnicalSkillsSearchView"
+            app:singleLine="false" />
+
+        <TextView
+            android:id="@+id/requiredSoftSkillsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Select Required Soft Skills"
+            android:textColor="@color/main_blue"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/selectedRequiredTechnicalSkillsChipGroup"
+            app:layout_constraintTop_toBottomOf="@id/selectedRequiredTechnicalSkillsChipGroup" />
+
+        <AutoCompleteTextView
+            android:id="@+id/requiredSoftSkillsSearchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Search skills"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@id/vacancyLinearLayout2"
+            app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout2"
+            app:layout_constraintTop_toBottomOf="@id/requiredSoftSkillsTV" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/selectedRequiredSoftSkillsChipGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:chipSpacing="8dp"
+            app:layout_constraintEnd_toEndOf="@id/requiredSoftSkillsSearchView"
+            app:layout_constraintStart_toStartOf="@id/requiredSoftSkillsSearchView"
+            app:layout_constraintTop_toBottomOf="@id/requiredSoftSkillsSearchView"
+            app:singleLine="false" />
+
+        <TextView
+            android:id="@+id/requiredLanguagesTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Select Required Languages"
+            android:textColor="@color/main_blue"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/selectedRequiredSoftSkillsChipGroup"
+            app:layout_constraintTop_toBottomOf="@id/selectedRequiredSoftSkillsChipGroup" />
+
+        <AutoCompleteTextView
+            android:id="@+id/requiredLanguagesSearchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Search languages"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@id/vacancyLinearLayout2"
+            app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout2"
+            app:layout_constraintTop_toBottomOf="@id/requiredLanguagesTV" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/selectedRequiredLanguagesChipGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:chipSpacing="8dp"
+            app:layout_constraintEnd_toEndOf="@id/requiredLanguagesSearchView"
+            app:layout_constraintStart_toStartOf="@id/requiredLanguagesSearchView"
+            app:layout_constraintTop_toBottomOf="@id/requiredLanguagesSearchView"
+            app:singleLine="false" />
+
+        <LinearLayout
+            android:id="@+id/vacancyLinearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/vacancyLinearLayout2"
+            app:layout_constraintStart_toStartOf="@id/selectedRequiredLanguagesChipGroup"
+            app:layout_constraintTop_toBottomOf="@id/selectedRequiredLanguagesChipGroup">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deadline:"
+                android:textColor="@color/main_blue"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/vacancyDeadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ems="10"
+                android:inputType="date"
+                android:hint="May 5, 2025"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/postJobBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="120dp"
+            android:background="@color/main_blue"
+            android:text="Post"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/vacancyLinearLayout3"
+            app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout3"
+            app:layout_constraintTop_toBottomOf="@id/vacancyLinearLayout3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

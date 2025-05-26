@@ -30,9 +30,9 @@ class CandidatePersonalInformationFragment :
         val email = user.email
         nextBtn.setOnClickListener {
 
-            val name = registerCandidateFullNameET.text.toString().trim()
+            val name = registerCandidateFullNameET.text.toString()
             val number = registerCandidatePhoneET.text.toString().trim()
-            val currentJobTitle = currentJobTitleET.text.toString().trim()
+            val currentJobTitle = currentJobTitleET.text.toString()
             val yearsOfExperience = yearsOfExperienceET.text.toString().trim().toIntOrNull()
             val desiredJobTitle = desiredJobTitleET.text.toString()
             val salaryExpectation = salaryExpectationET.text.toString().trim().toDoubleOrNull()
