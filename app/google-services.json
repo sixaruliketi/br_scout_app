@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "878364169821",
+    "firebase_url": "https://br-scout-app-default-rtdb.firebaseio.com",
+    "project_id": "br-scout-app",
+    "storage_bucket": "br-scout-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878364169821:android:d59ad3378973bc546cdfb4",
+        "android_client_info": {
+          "package_name": "com.example.brs_cout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsewRKLt8ZilcGJQKBaGpK_eXxq7wNJwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

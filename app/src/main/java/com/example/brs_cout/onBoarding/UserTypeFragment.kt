@@ -7,6 +7,7 @@ import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentUserTypeBinding
 import com.example.brs_cout.onBoarding.candidate.CandidateRegisterFragment
 import com.example.brs_cout.onBoarding.company.CompanyRegisterFragment
+import com.example.brs_cout.onBoarding.company.CompanyRegisterInfoFragment
 
 class UserTypeFragment : BaseFragment<FragmentUserTypeBinding>(){
 
@@ -22,7 +23,7 @@ class UserTypeFragment : BaseFragment<FragmentUserTypeBinding>(){
             parentFragmentManager.beginTransaction().replace(R.id.main,LoginFragment()).commit()
         }
         chooseCompanyOnBoardingBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.main,CompanyRegisterFragment()).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.main,CompanyRegisterInfoFragment()).commit()
         }
         chooseCandidateOnBoardingBtn.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.main,CandidateRegisterFragment()).commit()

@@ -23,6 +23,7 @@ import com.example.brs_cout.profile.ProfileFragment
 import com.example.brs_cout.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,6 +31,8 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar // Use fully qualified name to avoid conflict
     private lateinit var navigationView: NavigationView
     private lateinit var binding: ActivityStartBinding // Replace with your Activity's binding class
+
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -148,6 +151,7 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             R.id.nav_settings -> loadFragment(SettingsFragment(), "settings_tag", addToBackStack = true)
             R.id.nav_contact -> loadFragment(ContactUsFragment(), "contact_tag", addToBackStack = true)
             R.id.nav_logout -> {
+                auth.signOut()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
