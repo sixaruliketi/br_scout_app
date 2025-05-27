@@ -36,7 +36,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun init() {
-        adapter = VacancyAdapter(mutableListOf())
+        adapter = VacancyAdapter(mutableListOf(),childFragmentManager)
         binding.profileVacancyRV.adapter = adapter
         binding.profileVacancyRV.layoutManager = LinearLayoutManager(requireContext())
 

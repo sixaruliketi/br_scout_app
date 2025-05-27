@@ -3,19 +3,29 @@ package com.example.brs_cout.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brs_cout.databinding.VacancyItemBinding
 import com.example.brs_cout.models.Company
 import com.example.brs_cout.models.Vacancy
+import com.example.brs_cout.profile.RecommendedCandidatesDialogFragment
 
-class VacancyAdapter(private val vacancies: MutableList<Vacancy>) : RecyclerView.Adapter<VacancyAdapter.VacancyViewHolder>() {
+class VacancyAdapter(
+    private val vacancies: MutableList<Vacancy>,
+    private val fragmentManager: FragmentManager
+) : RecyclerView.Adapter<VacancyAdapter.VacancyViewHolder>() {
 
     inner class VacancyViewHolder(private val binding: VacancyItemBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(vacancy: Vacancy) = with(binding){
+        fun bind(vacancy: Vacancy) = with(binding) {
             vacancyJobTitle.text = vacancy.jobTitle
             vacancyLocation.text = vacancy.location
-            if (vacancy.isActive == true) {vacancyIsActive.text ="active"} else {"not active"}
+            vacancyIsActive.text = if (vacancy.isActive == true) "active" else "not active"
+
+            itemView.setOnClickListener {
+                val dialog = RecommendedCandidatesDialogFragment.newInstance(vacancy.id ?: "")
+                dialog.show(fragmentManager, "RecommendedCandidatesDialog")
+            }
         }
     }
 

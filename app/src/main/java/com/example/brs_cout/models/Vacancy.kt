@@ -6,7 +6,6 @@ data class Vacancy(
     val jobTitle: String? = null, // ვაკანსიის დასახელება (მაგ. "Android Developer", "Senior UX Designer")
     val jobDescription: String? = null, // ვაკანსიის დეტალური აღწერა (პასუხისმგებლობები, მოთხოვნები)
     val location: String? = null, // სამუშაო ადგილი (მაგ. "თბილისი", "რუსთავი", "Remote")
-//    val jobType: String? = null, // სამუშაოს ტიპი (მაგ. "სრული განაკვეთი", "ნახევარი განაკვეთი", "ფრილანსერი", "სტაჟირება")
 
     // ვაკანსიის მოთხოვნები (ტექნიკური უნარები)
     val requiredTechnicalSkills: List<ListItem.SkillItem>? = null, // საჭირო ტექნიკური უნარები
@@ -15,9 +14,7 @@ data class Vacancy(
     // ენობრივი მოთხოვნები
     val requiredLanguages: List<ListItem.SkillItem>? = null,      // საჭირო ენები (მაგ. ინგლისური, ქართული)
 
-//    val benefits: List<String>?, // კომპანიის მიერ შემოთავაზებული ბენეფიტები (მაგ. "ჯანმრთელობის დაზღვევა", "ფიტნესის აბონემენტი")
     val applicationDeadline: String? = null, // განაცხადების მიღების ბოლო ვადა (Unix timestamp-ში, არასავალდებულოა)
-//    val remoteOption: Boolean, // შესაძლებელია თუ არა დისტანციურად მუშაობა
 
     val isActive: Boolean? = true // არის თუ არა ვაკანსია აქტიური
 )
