@@ -17,12 +17,14 @@ import com.google.android.flexbox.JustifyContent
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class CandidateTechSkillsFragment : BaseFragment<FragmentCandidateTechSkillsBinding>() {
 
     private val db = FirebaseDatabase.getInstance().getReference("candidates")
-    private val user = FirebaseAuth.getInstance().currentUser!!
 
     private val allTechSkills = listOf(
         "Android",
@@ -132,7 +134,6 @@ class CandidateTechSkillsFragment : BaseFragment<FragmentCandidateTechSkillsBind
         "Continuous Deployment"
     )
 
-
     private val selectedSkills = mutableSetOf<String>() // No duplicates
 
     override fun inflateBinding(
@@ -143,43 +144,70 @@ class CandidateTechSkillsFragment : BaseFragment<FragmentCandidateTechSkillsBind
     }
 
     override fun init() = with(binding){
-//        setupSkillSelection()
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, allTechSkills)
-        skillSearchView.setAdapter(adapter)
-        skillSearchView.setOnItemClickListener { parent, _, position, _ ->
-            val selectedSkill = parent.getItemAtPosition(position).toString()
+        val ref = FirebaseDatabase.getInstance().getReference("candidates")
 
-            if (selectedSkills.contains(selectedSkill)) {
-                Toast.makeText(requireContext(), "Already selected", Toast.LENGTH_SHORT).show()
-            } else if (selectedSkills.size >= 10) {
-                Toast.makeText(requireContext(), "Maximum 10 skills", Toast.LENGTH_SHORT).show()
-            } else {
-                addSkillChip(selectedSkill)
-                selectedSkills.add(selectedSkill)
-            }
-            skillSearchView.setText("") // Clear input
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (childSnapshot in snapshot.children) {
+                    val id = childSnapshot.key  // ეს არის ID
+                    val candidate = childSnapshot.getValue(Candidate::class.java)
 
-            val skillItems = selectedSkills.map { skill ->
-                ListItem.SkillItem(id = skill)
-            }
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_dropdown_item_1line,
+                        allTechSkills
+                    )
+                    skillSearchView.setAdapter(adapter)
+                    skillSearchView.setOnItemClickListener { parent, _, position, _ ->
+                        val selectedSkill = parent.getItemAtPosition(position).toString()
 
-            db.child(user.uid)
-                .child("technicalSkills")
-                .setValue(skillItems)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Skills uploaded!", Toast.LENGTH_SHORT).show()
+                        if (selectedSkills.contains(selectedSkill)) {
+                            Toast.makeText(requireContext(), "Already selected", Toast.LENGTH_SHORT)
+                                .show()
+                        } else if (selectedSkills.size >= 10) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Maximum 10 skills",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            addSkillChip(selectedSkill)
+                            selectedSkills.add(selectedSkill)
+                        }
+                        skillSearchView.setText("") // Clear input
+
+                        val skillItems = selectedSkills.map { skill ->
+                            ListItem.SkillItem(id = skill)
+                        }
+
+                        db.child(id.toString())
+                            .child("technicalSkills")
+                            .setValue(skillItems)
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Skills uploaded!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+
+                    }
                 }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                }
+            }
 
-        }
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+            }
 
+        })
         nextBtn.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.main,CandidateSoftSkillsFragment()).commit()
         }
-
     }
 
     private fun addSkillChip(skill: String) = with(binding) {

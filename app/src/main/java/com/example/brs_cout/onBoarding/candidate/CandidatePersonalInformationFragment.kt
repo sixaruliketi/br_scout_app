@@ -1,22 +1,19 @@
 package com.example.brs_cout.onBoarding.candidate
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.brs_cout.R
-import com.example.brs_cout.StartActivity
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCandidatePersonalInformationBinding
 import com.example.brs_cout.models.Candidate
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.util.UUID
 
 class CandidatePersonalInformationFragment :
     BaseFragment<FragmentCandidatePersonalInformationBinding>() {
 
     private val db = FirebaseDatabase.getInstance().getReference("candidates")
-    private val user = FirebaseAuth.getInstance().currentUser!!
 
     override fun inflateBinding(
         inflater: LayoutInflater,
@@ -26,11 +23,11 @@ class CandidatePersonalInformationFragment :
     }
 
     override fun init() = with(binding) {
-        val uid = user.uid
-        val email = user.email
+        val uid = UUID.randomUUID().toString()
         nextBtn.setOnClickListener {
 
             val name = registerCandidateFullNameET.text.toString()
+            val email = registerCandidateEmailET.text.toString().trim()
             val number = registerCandidatePhoneET.text.toString().trim()
             val currentJobTitle = currentJobTitleET.text.toString()
             val yearsOfExperience = yearsOfExperienceET.text.toString().trim().toIntOrNull()
@@ -43,7 +40,7 @@ class CandidatePersonalInformationFragment :
             val candidate = Candidate(
                 uid,
                 name,
-                email!!,
+                email,
                 number,
                 currentJobTitle,
                 null,

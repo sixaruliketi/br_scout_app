@@ -8,18 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.brs_cout.R
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCandidateSoftSkillsBinding
+import com.example.brs_cout.models.Candidate
 import com.example.brs_cout.models.ListItem
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.google.android.material.chip.Chip
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class CandidateSoftSkillsFragment : BaseFragment<FragmentCandidateSoftSkillsBinding>() {
 
     private val db = FirebaseDatabase.getInstance().getReference("candidates")
-    private val user = FirebaseAuth.getInstance().currentUser!!
 
     private val allSoftSkills = listOf(
         "Teamwork",
@@ -134,42 +137,71 @@ class CandidateSoftSkillsFragment : BaseFragment<FragmentCandidateSoftSkillsBind
         inflater: LayoutInflater,
         container: ViewGroup?
     ): FragmentCandidateSoftSkillsBinding {
-        return FragmentCandidateSoftSkillsBinding.inflate(inflater,container,false)
+        return FragmentCandidateSoftSkillsBinding.inflate(inflater, container, false)
     }
-    override fun init() = with(binding){
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, allSoftSkills)
-        skillSearchView.setAdapter(adapter)
-        skillSearchView.setOnItemClickListener { parent, _, position, _ ->
-            val selectedSkill = parent.getItemAtPosition(position).toString()
+    override fun init() = with(binding) {
+        val ref = FirebaseDatabase.getInstance().getReference("candidates")
 
-            if (selectedSkills.contains(selectedSkill)) {
-                Toast.makeText(requireContext(), "Already selected", Toast.LENGTH_SHORT).show()
-            } else if (selectedSkills.size >= 10) {
-                Toast.makeText(requireContext(), "Maximum 10 skills", Toast.LENGTH_SHORT).show()
-            } else {
-                addSkillChip(selectedSkill)
-                selectedSkills.add(selectedSkill)
-            }
-            skillSearchView.setText("") // Clear input
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (childSnapshot in snapshot.children) {
+                    val id = childSnapshot.key  // ეს არის ID
 
-            val skillItems = selectedSkills.map { skill ->
-                ListItem.SkillItem(id = skill)
-            }
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_dropdown_item_1line,
+                        allSoftSkills
+                    )
+                    skillSearchView.setAdapter(adapter)
+                    skillSearchView.setOnItemClickListener { parent, _, position, _ ->
+                        val selectedSkill = parent.getItemAtPosition(position).toString()
 
-            db.child(user.uid)
-                .child("softSkills")
-                .setValue(skillItems)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Skills uploaded!", Toast.LENGTH_SHORT).show()
+                        if (selectedSkills.contains(selectedSkill)) {
+                            Toast.makeText(requireContext(), "Already selected", Toast.LENGTH_SHORT)
+                                .show()
+                        } else if (selectedSkills.size >= 10) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Maximum 10 skills",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            addSkillChip(selectedSkill)
+                            selectedSkills.add(selectedSkill)
+                        }
+                        skillSearchView.setText("") // Clear input
+
+                        val skillItems = selectedSkills.map { skill ->
+                            ListItem.SkillItem(id = skill)
+                        }
+
+                        db.child(id.toString())
+                            .child("softSkills")
+                            .setValue(skillItems)
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Skills uploaded!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                    }
                 }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                }
-        }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+            }
+        })
 
         nextBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.main,CandidateLanguagesFragment()).commit()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, CandidateLanguagesFragment()).commit()
         }
     }
 

@@ -1,18 +1,18 @@
 package com.example.brs_cout.models
 
 data class Candidate(
-    val id: String, // კანდიდატის უნიკალური ID
-    val fullName: String, // სახელი
-    val email: String, // ელ. ფოსტა (უნიკალური, გამოიყენება ავთენტიფიკაციისთვის)
-    val phoneNumber: String?, // ტელეფონის ნომერი (არასავალდებულოა, ამიტომ nullable)
-    val currentJobTitle: String?,
-    val profilePictureUrl: String?, // პროფილის სურათის URL (არასავალდებულოა)
-    val bio: String?, // მოკლე ბიოგრაფია/შესავალი (არასავალდებულოა)
-    val yearsOfExperience: Int?, // გამოცდილების წლები (არასავალდებულოა)
-    val desiredJobTitle: String?, // სასურველი პოზიცია/სამსახური (არასავალდებულოა)
-    val salaryExpectation: Double?, // ხელფასის მოლოდინი (არასავალდებულოა)
-    val isAvailableForRemote: Boolean, // ხელმისაწვდომია თუ არა დისტანციური სამუშაოსთვის
-    val isLookingForJob: Boolean, // აქტიურად ეძებს თუ არა სამსახურს
+    val id: String? = null, // კანდიდატის უნიკალური ID
+    val fullName: String? = null, // სახელი
+    val email: String? = null, // ელ. ფოსტა (უნიკალური, გამოიყენება ავთენტიფიკაციისთვის)
+    val phoneNumber: String? = null, // ტელეფონის ნომერი (არასავალდებულოა, ამიტომ nullable)
+    val currentJobTitle: String? = null,
+    val profilePictureUrl: String? = null, // პროფილის სურათის URL (არასავალდებულოა)
+    val bio: String? = null, // მოკლე ბიოგრაფია/შესავალი (არასავალდებულოა)
+    val yearsOfExperience: Int? = null, // გამოცდილების წლები (არასავალდებულოა)
+    val desiredJobTitle: String? = null, // სასურველი პოზიცია/სამსახური (არასავალდებულოა)
+    val salaryExpectation: Double? = null, // ხელფასის მოლოდინი (არასავალდებულოა)
+    val isAvailableForRemote: Boolean? = false, // ხელმისაწვდომია თუ არა დისტანციური სამუშაოსთვის
+    val isLookingForJob: Boolean? = false, // აქტიურად ეძებს თუ არა სამსახურს
 
     // უნარების სიები
     val technicalSkills: List<ListItem.SkillItem> ? = null, // არჩეული ტექნიკური უნარები

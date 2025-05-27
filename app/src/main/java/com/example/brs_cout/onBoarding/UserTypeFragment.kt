@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.example.brs_cout.R
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentUserTypeBinding
-import com.example.brs_cout.onBoarding.candidate.CandidateRegisterFragment
+import com.example.brs_cout.onBoarding.candidate.CandidatePersonalInformationFragment
 import com.example.brs_cout.onBoarding.company.CompanyRegisterFragment
 import com.example.brs_cout.onBoarding.company.CompanyRegisterInfoFragment
 
@@ -26,7 +26,7 @@ class UserTypeFragment : BaseFragment<FragmentUserTypeBinding>(){
             parentFragmentManager.beginTransaction().replace(R.id.main,CompanyRegisterInfoFragment()).commit()
         }
         chooseCandidateOnBoardingBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.main,CandidateRegisterFragment()).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.main,CandidatePersonalInformationFragment()).commit()
         }
     }
 

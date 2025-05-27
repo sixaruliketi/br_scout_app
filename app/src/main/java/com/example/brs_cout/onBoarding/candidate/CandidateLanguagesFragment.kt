@@ -10,18 +10,21 @@ import com.example.brs_cout.R
 import com.example.brs_cout.StartActivity
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCandidateLanguagesBinding
+import com.example.brs_cout.models.Candidate
 import com.example.brs_cout.models.ListItem
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.google.android.material.chip.Chip
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBinding>() {
 
     private val db = FirebaseDatabase.getInstance().getReference("candidates")
-    private val user = FirebaseAuth.getInstance().currentUser!!
 
     private val allLanguages = listOf(
         "English",
@@ -119,10 +122,7 @@ class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBindin
         "Frisian"
     )
 
-
-
     private val selectedSkills = mutableSetOf<String>() // No duplicates
-
 
     override fun inflateBinding(
         inflater: LayoutInflater,
@@ -132,40 +132,67 @@ class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBindin
     }
 
     override fun init() = with(binding) {
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            allLanguages
-        )
-        skillSearchView.setAdapter(adapter)
-        skillSearchView.setOnItemClickListener { parent, _, position, _ ->
-            val selectedSkill = parent.getItemAtPosition(position).toString()
 
-            if (selectedSkills.contains(selectedSkill)) {
-                Toast.makeText(requireContext(), "Already selected", Toast.LENGTH_SHORT).show()
-            } else if (selectedSkills.size >= 10) {
-                Toast.makeText(requireContext(), "Enter maximum 10 languages", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                addSkillChip(selectedSkill)
-                selectedSkills.add(selectedSkill)
-            }
-            skillSearchView.setText("") // Clear input
+        val ref = FirebaseDatabase.getInstance().getReference("candidates")
 
-            val skillItems = selectedSkills.map { skill ->
-                ListItem.SkillItem(id = skill)
-            }
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (childSnapshot in snapshot.children) {
+                    val id = childSnapshot.key  // ეს არის ID
 
-            db.child(user.uid)
-                .child("languages")
-                .setValue(skillItems)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Skills uploaded!", Toast.LENGTH_SHORT).show()
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_dropdown_item_1line,
+                        allLanguages
+                    )
+                    skillSearchView.setAdapter(adapter)
+                    skillSearchView.setOnItemClickListener { parent, _, position, _ ->
+                        val selectedSkill = parent.getItemAtPosition(position).toString()
+
+                        if (selectedSkills.contains(selectedSkill)) {
+                            Toast.makeText(requireContext(), "Already selected", Toast.LENGTH_SHORT)
+                                .show()
+                        } else if (selectedSkills.size >= 10) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Enter maximum 10 languages",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        } else {
+                            addSkillChip(selectedSkill)
+                            selectedSkills.add(selectedSkill)
+                        }
+                        skillSearchView.setText("") // Clear input
+
+                        val skillItems = selectedSkills.map { skill ->
+                            ListItem.SkillItem(id = skill)
+                        }
+
+                        db.child(id.toString())
+                            .child("languages")
+                            .setValue(skillItems)
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Skills uploaded!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                    }
                 }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                }
-        }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
         registerCandidateBtn.setOnClickListener {
             Toast.makeText(
@@ -173,7 +200,8 @@ class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBindin
                 "congratulations!\nYou are registered as a candidate",
                 Toast.LENGTH_SHORT
             ).show()
-            parentFragmentManager.beginTransaction().replace(R.id.main,CandidateRegistrationSuccessPageFragment()).commit()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, CandidateRegistrationSuccessPageFragment()).commit()
 //            val intent = Intent(requireContext(), StartActivity::class.java)
 //            startActivity(intent)
 //            requireActivity().finish()
