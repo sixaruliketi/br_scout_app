@@ -17,5 +17,8 @@ data class Candidate(
     // უნარების სიები
     val technicalSkills: List<ListItem.SkillItem> ? = null, // არჩეული ტექნიკური უნარები
     val softSkills: List<ListItem.SkillItem>? = null,     // არჩეული soft უნარები
-    val languages: List<ListItem.SkillItem>? = null
+    val languages: List<ListItem.SkillItem>? = null,
+
+    //for me
+    val verified: Boolean ?= false
 )

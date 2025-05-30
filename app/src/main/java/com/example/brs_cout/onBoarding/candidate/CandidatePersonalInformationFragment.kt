@@ -7,6 +7,7 @@ import com.example.brs_cout.R
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCandidatePersonalInformationBinding
 import com.example.brs_cout.models.Candidate
+import com.example.brs_cout.onBoarding.UserTypeFragment
 import com.google.firebase.database.FirebaseDatabase
 import java.util.UUID
 
@@ -61,6 +62,10 @@ class CandidatePersonalInformationFragment :
                 .addOnFailureListener {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                 }
+        }
+        goBackToUserType.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, UserTypeFragment()).commit()
         }
     }
 }

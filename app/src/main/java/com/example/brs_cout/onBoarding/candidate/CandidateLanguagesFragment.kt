@@ -207,6 +207,10 @@ class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBindin
 //            requireActivity().finish()
 
         }
+
+        goBackToCandidateSoftSkills.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.main,CandidateSoftSkillsFragment()).commit()
+        }
     }
 
     private fun addSkillChip(skill: String) = with(binding) {

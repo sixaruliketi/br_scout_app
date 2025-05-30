@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".onBoarding.candidate.CandidateLanguagesFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
             <ImageButton
+                android:id="@+id/goBackToCandidateSoftSkills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_left"
+                android:layout_marginTop="20dp"
                 android:background="@null"
-                android:layout_marginTop="10dp"/>
+                android:src="@drawable/ic_arrow_left" />
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
@@ -35,24 +38,24 @@
             android:layout_height="wrap_content"
             android:text="what languages do you know?"
             android:textColor="@color/main_blue"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <AutoCompleteTextView
             android:id="@+id/skillSearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:hint="Search languages"
-            android:inputType="text"
-            android:layout_marginTop="20dp" />
+            android:inputType="text" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/selectedSkillsChipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:singleLine="false"
+            android:orientation="horizontal"
             app:chipSpacing="8dp"
-            android:orientation="horizontal"/>
+            app:singleLine="false" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -60,11 +63,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="120dp"
             android:background="@color/main_blue"
             android:text="Next"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:layout_marginBottom="120dp"/>
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

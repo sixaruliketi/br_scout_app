@@ -3,18 +3,22 @@ package com.example.brs_cout.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.brs_cout.R
+import com.example.brs_cout.databinding.ItemCandidateBinding
 import com.example.brs_cout.models.Candidate
 
 class CandidateAdapter(private val candidates: List<Candidate>) :
     RecyclerView.Adapter<CandidateAdapter.CandidateViewHolder>() {
 
     class CandidateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(candidate: Candidate) {
-            itemView.findViewById<TextView>(R.id.nameTextView).text = candidate.fullName
-            itemView.findViewById<TextView>(R.id.titleTextView).text = candidate.currentJobTitle
+        val binding = ItemCandidateBinding.bind(itemView)
+        fun bind(candidate: Candidate) = with(binding) {
+            nameTextView.text = candidate.fullName
+            jobTitleTV.text = candidate.currentJobTitle
+            Glide.with(itemView).load(candidate.profilePictureUrl).into(candidateProfileImage)
+
         }
     }
 

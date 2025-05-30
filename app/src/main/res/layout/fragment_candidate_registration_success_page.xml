@@ -4,25 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FDF6F0"
     tools:context=".onBoarding.candidate.CandidateRegistrationSuccessPageFragment">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="50dp"
-        android:src="@mipmap/ic_launcher_foreground" />
+        android:layout_marginTop="90dp"
+        android:src="@drawable/success_screen" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thank you for trusting us\nWe will contact you if candidate is selected"
 
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:gravity="center"
         android:layout_gravity="center"
         android:textSize="20sp"
-
+        android:layout_marginHorizontal="50dp"
         android:textStyle="bold"
         android:textColor="@color/main_blue" />
 
@@ -31,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_close"
+        android:backgroundTint="#FB7185"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"/>
 </LinearLayout>

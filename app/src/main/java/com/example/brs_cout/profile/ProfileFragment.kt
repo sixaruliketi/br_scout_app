@@ -1,17 +1,16 @@
 package com.example.brs_cout.profile
 
-import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brs_cout.R
+import com.bumptech.glide.Glide
 import com.example.brs_cout.adapters.VacancyAdapter
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentProfileBinding
+import com.example.brs_cout.models.Company
 import com.example.brs_cout.models.Vacancy
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -23,7 +22,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private lateinit var adapter: VacancyAdapter
     private val user = FirebaseAuth.getInstance().currentUser!!
 
-    val dbRef = FirebaseDatabase.getInstance().getReference("companies").child(user.uid).child("vacancies")
+    val db = FirebaseDatabase.getInstance().getReference("companies")
+    val dbRef = db.child(user.uid).child("vacancies")
     private var isLoading = false
     private var lastKey: String? = null
     private val pageSize = 20
@@ -35,7 +35,32 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         return FragmentProfileBinding.inflate(inflater, container, false)
     }
 
+    private fun userProfileInfo() = with(binding){
+
+
+        profileMinDescription.text = user.uid
+
+        db.child(user.uid).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userInfo = snapshot.getValue(Company::class.java) ?: return
+
+                Log.d("DEBUG", "Data: ${snapshot.value}")
+                profileName.text = userInfo.companyName
+                Glide.with(binding.root).load(userInfo.logoUrl).into(profileImage)
+                profileBio.text = userInfo.description
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "error: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
     override fun init() {
+
+        userProfileInfo()
+
         adapter = VacancyAdapter(mutableListOf(),childFragmentManager)
         binding.profileVacancyRV.adapter = adapter
         binding.profileVacancyRV.layoutManager = LinearLayoutManager(requireContext())

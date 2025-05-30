@@ -203,6 +203,9 @@ class CandidateSoftSkillsFragment : BaseFragment<FragmentCandidateSoftSkillsBind
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main, CandidateLanguagesFragment()).commit()
         }
+        goBackToCandidateTechSkills.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.main,CandidateTechSkillsFragment()).commit()
+        }
     }
 
     private fun addSkillChip(skill: String) = with(binding) {

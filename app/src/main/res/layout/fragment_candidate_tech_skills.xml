@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_left"
                 android:background="@null"
+                android:id="@+id/goBackToCandidateInfo"
                 android:layout_marginTop="10dp"/>
             <ImageView
                 android:id="@+id/imageView2"

@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="12dp">
 
+    <ImageView
+
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:scaleType="centerCrop"
+        android:id="@+id/candidateProfileImage"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toEndOf="@id/candidateProfileImage"
+        app:layout_constraintTop_toTopOf="@id/candidateProfileImage"
+        app:layout_constraintBottom_toTopOf="@id/jobTitleTV"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/nameTextView"
+        android:layout_marginStart="10dp"
         android:textSize="16sp"
         android:text="Full Name"
         android:textStyle="bold"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/titleTextView"
+        android:id="@+id/jobTitleTV"
+        android:layout_marginBottom="40dp"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/candidateProfileImage"
+        app:layout_constraintStart_toStartOf="@id/nameTextView"
+        app:layout_constraintTop_toBottomOf="@id/nameTextView"
+        app:layout_constraintEnd_toEndOf="@id/nameTextView"
         android:text="Job Title"/>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

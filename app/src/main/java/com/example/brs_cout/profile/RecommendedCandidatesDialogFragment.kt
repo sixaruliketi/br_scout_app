@@ -3,6 +3,7 @@ package com.example.brs_cout.profile
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,10 +12,21 @@ import com.example.brs_cout.R
 import com.example.brs_cout.adapters.CandidateAdapter
 import com.example.brs_cout.models.Candidate
 import com.example.brs_cout.models.ListItem
+import com.example.brs_cout.models.Vacancy
+import com.example.brs_cout.recommendationSystem.CandidateScoreData
+import com.example.brs_cout.recommendationSystem.RecommendationEngine
+import com.example.brs_cout.recommendationSystem.RecommendationSystem
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class RecommendedCandidatesDialogFragment : DialogFragment() {
 
     private var vacancyId: String? = null
+
+    val companyID = FirebaseAuth.getInstance().currentUser!!.uid
 
     companion object {
         fun newInstance(vacancyId: String): RecommendedCandidatesDialogFragment {
@@ -38,12 +50,11 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.candidatesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // TODO: Load candidates from Firebase or local list
         loadRecommendedCandidates(vacancyId ?: "", recyclerView)
 
         builder.setView(view)
-            .setTitle("რეკომენდირებული კანდიდატები")
-            .setNegativeButton("დახურვა") { dialog, _ ->
+            .setTitle("Recommended Candidates")
+            .setNegativeButton("close") { dialog, _ ->
                 dialog.dismiss()
             }
 
@@ -51,22 +62,96 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
     }
 
     private fun loadRecommendedCandidates(vacancyId: String, recyclerView: RecyclerView) {
-        // შენ შეიძლება გამოიყენო Firebase Query აქ
-        // მაგალითად — ყველა კანდიდატის წამოღება და ფილტრი ვაკანსიის მოთხოვნების მიხედვით
+        getVacancyById(companyID, vacancyId) { vacancy ->
+            if (vacancy != null) {
+                getAllCandidatesFromFirebase { allCandidates ->
 
-        val dummyCandidates = listOf(
-            Candidate("1", "ნინო ქავთარაძე", "nino@gmail.com", "555123456", "Android Dev", null, null, 3, "Senior Android Dev", 4000.0, true, true,
-                technicalSkills = listOf(ListItem.SkillItem("Android"), ListItem.SkillItem("Kotlin")),
-                softSkills = listOf(ListItem.SkillItem("Teamwork")),
-                languages = listOf(ListItem.SkillItem("English"))
-            ),
-            Candidate("2", "გიორგი ლიპარტელიანი", "giorgi@gmail.com", "555654321", "Backend Dev", null, null, 5, "Tech Lead", 5000.0, true, false,
-                technicalSkills = listOf(ListItem.SkillItem("Node.js"), ListItem.SkillItem("Docker")),
-                softSkills = listOf(ListItem.SkillItem("Leadership")),
-                languages = listOf(ListItem.SkillItem("English"), ListItem.SkillItem("Georgian"))
-            )
-        )
+                    val topPairs = RecommendationSystem.findTopCandidates(allCandidates, vacancy)
 
-        recyclerView.adapter = CandidateAdapter(dummyCandidates)
+                    if (topPairs.isEmpty()) {
+                        recyclerView.adapter = CandidateAdapter(emptyList())
+                        Log.d("TAG", "No matching candidates found")
+                        return@getAllCandidatesFromFirebase
+                    }
+
+                    val scoreData = topPairs.map { (candidate, matchScore) ->
+                        CandidateScoreData(
+                            id = candidate.id ?: "",
+                            salaryExpectation = candidate.salaryExpectation ?: Double.MAX_VALUE,
+                            isLookingForJob = candidate.isLookingForJob ?: false,
+                            techSkillMatch = matchScore * 60, // match %
+                            softSkillMatch = candidate.softSkills?.size?.coerceAtMost(10)?.times(10.0) ?: 0.0,
+                            experience = candidate.yearsOfExperience ?: 0
+                        )
+                    }
+
+                    Log.d("TAG", scoreData.toString())
+
+                    val weights = mapOf(
+                        "salary" to 0.2,
+                        "looking" to 0.1,
+                        "tech" to 0.3,
+                        "soft" to 0.2,
+                        "exp" to 0.2
+                    )
+
+                    val topsisResults = RecommendationSystem.topsisRank(scoreData, weights)
+                    Log.d("TAG", topsisResults.toString())
+
+                    // Map back to actual candidates using their ID
+                    val recommended = topsisResults.mapNotNull { result ->
+                        allCandidates.find { it.id == result.candidateId }
+                    }
+                    Log.d("TAG", recommended.toString())
+
+                    recyclerView.adapter = CandidateAdapter(recommended)
+                    Log.d("TAG", "Recommended candidates loaded")
+
+                }
+            } else {
+                recyclerView.adapter = CandidateAdapter(emptyList())
+                Log.d("TAG", "Vacancy not found")
+            }
+        }
+    }
+
+    private fun getAllCandidatesFromFirebase(onComplete: (List<Candidate>) -> Unit) {
+        val dbRef = FirebaseDatabase.getInstance().getReference("candidates")
+        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val candidates = mutableListOf<Candidate>()
+                for (candidateSnapshot in snapshot.children) {
+                    val candidate = candidateSnapshot.getValue(Candidate::class.java)
+                    if (candidate != null) {
+                        candidates.add(candidate)
+                    }
+                }
+                onComplete(candidates)
+                Log.d("TAG", "Get All Candidates From Firebase")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                onComplete(emptyList())
+            }
+        })
+    }
+
+    private fun getVacancyById(companyUid: String, vacancyId: String, onComplete: (Vacancy?) -> Unit) {
+        val dbRef = FirebaseDatabase.getInstance()
+            .getReference("companies")
+            .child(companyUid)
+            .child("vacancies")
+            .child(vacancyId)
+
+        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val vacancy = snapshot.getValue(Vacancy::class.java)
+                onComplete(vacancy)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                onComplete(null)
+            }
+        })
     }
 }

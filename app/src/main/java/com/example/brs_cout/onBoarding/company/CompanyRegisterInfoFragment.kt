@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.brs_cout.R
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCompanyRegisterInfoBinding
+import com.example.brs_cout.onBoarding.UserTypeFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class CompanyRegisterInfoFragment : BaseFragment<FragmentCompanyRegisterInfoBinding>() {
@@ -46,8 +47,11 @@ class CompanyRegisterInfoFragment : BaseFragment<FragmentCompanyRegisterInfoBind
                         ).show()
                     }
             }
+        }
 
-
+        goBackToUserTypeFragment.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, UserTypeFragment()).commit()
         }
     }
 
