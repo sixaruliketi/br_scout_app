@@ -51,4 +51,14 @@
     <string name="show_more">Show More</string>
     <string name="active">Active</string>
     <string name="job_title">Job Title</string>
+    <string name="brief_description_of_the_app">Brief Description of the App</string>
+    <string name="br_scout_is_a_smart_headhunting_app_that_helps_companies_find_top_candidates_based_on_skill_based_recommendation_algorithms">BR Scout is a smart headhunting app that helps companies find top candidates based on skill-based recommendation algorithms.</string>
+    <string name="mission_statement">Mission</string>
+    <string name="our_mission_is_to_streamline_the_recruitment_process_by_connecting_companies_with_the_most_relevant_talent_through_intelligent_matching">Our mission is to streamline the recruitment process by connecting companies with the most relevant talent through intelligent matching.</string>
+    <string name="our_story">Our Story</string>
+    <string name="our_story_text">The idea behind BR Scout was born from firsthand experience in both the recruitment and tech industries. As professionals navigating the challenges of hiring and job-seeking, we noticed a gap between the skills companies were searching for and how candidates were being discovered. Traditional recruitment methods often relied on outdated filters or superficial keywords, overlooking talented individuals simply because they didn’t fit a rigid template.\n\nWe wanted to change that.\n\nBR Scout was created as a smarter alternative — a platform that goes beyond resumes and job titles. By using skill-based filtering, recommendation algorithms, and customizable hiring criteria, we empower companies to connect with candidates who truly match their needs — whether they’re looking for a seasoned developer, a visionary team lead, or a rising junior with high potential.\n\nOur journey began as a university project, shaped by academic research and real-world feedback from recruiters and hiring managers. Today, BR Scout is more than just an app — it’s a step toward more efficient, fair, and intelligent hiring.</string>
+    <string name="what_makes_us_unique">What Makes Us Unique</string>
+    <string name="what_makes_us_unique_text">• AI-driven candidate recommendations \n\n• Fast company onboarding\n\n• Skill and certification-based filtering</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="we_d_love_to_hear_from_you_whether_you_have_a_question_feedback_or_just_want_to_say_hello_feel_free_to_reach_out">We’d love to hear from you! Whether you have a question, feedback, or just want to say hello — feel free to reach out.</string>
 </resources>

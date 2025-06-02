@@ -1,25 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="20dp"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".drawerMenu.ContactUsFragment">
+    tools:context=".drawerMenu.ContactUsFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@mipmap/ic_launcher_foreground" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="contact us"
-        android:textSize="64sp"
-        android:textAllCaps="true"
+        android:textSize="19sp"
+        android:text="@string/contact_us"
         android:textStyle="bold"
         android:textColor="@color/main_blue"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="coming soon!"
-        android:textSize="40sp"
-        android:textColor="@color/main_blue"/>
+        android:text="@string/we_d_love_to_hear_from_you_whether_you_have_a_question_feedback_or_just_want_to_say_hello_feel_free_to_reach_out"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="📧 Email: contact@brscoutapp.com"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="25dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="📞 Phone: +1 (555) 123-4567"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🌐 Website: www.brscoutapp.com"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="📍 Address: 123 Talent Street, Innovation City, CA 90001"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Follow us on social media:"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="25dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/instagram_logo"
+        android:text="Instagram: @brscoutapp"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/facebook_logo"
+        android:text="Facebook: facebook.com/brscoutapp"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/linkedin_logo"
+        android:text="LinkedIn: linkedin.com/company/brscout"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"/>
+
 </LinearLayout>
