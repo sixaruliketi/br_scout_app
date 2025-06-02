@@ -14,7 +14,6 @@ import com.example.brs_cout.models.Candidate
 import com.example.brs_cout.models.ListItem
 import com.example.brs_cout.models.Vacancy
 import com.example.brs_cout.recommendationSystem.CandidateScoreData
-import com.example.brs_cout.recommendationSystem.RecommendationEngine
 import com.example.brs_cout.recommendationSystem.RecommendationSystem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -68,6 +67,7 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
 
                     val topPairs = RecommendationSystem.findTopCandidates(allCandidates, vacancy)
 
+                    Log.d("before topsis", topPairs.size.toString())
                     if (topPairs.isEmpty()) {
                         recyclerView.adapter = CandidateAdapter(emptyList())
                         Log.d("TAG", "No matching candidates found")
@@ -79,7 +79,7 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
                             id = candidate.id ?: "",
                             salaryExpectation = candidate.salaryExpectation ?: Double.MAX_VALUE,
                             isLookingForJob = candidate.isLookingForJob ?: false,
-                            techSkillMatch = matchScore * 60, // match %
+                            techSkillMatch = matchScore * 50, // match %
                             softSkillMatch = candidate.softSkills?.size?.coerceAtMost(10)?.times(10.0) ?: 0.0,
                             experience = candidate.yearsOfExperience ?: 0
                         )
@@ -89,14 +89,15 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
 
                     val weights = mapOf(
                         "salary" to 0.2,
-                        "looking" to 0.1,
+                        "looking" to 0.0,
                         "tech" to 0.3,
-                        "soft" to 0.2,
-                        "exp" to 0.2
+                        "soft" to 0.3,
+                        "exp" to 0.1
                     )
 
                     val topsisResults = RecommendationSystem.topsisRank(scoreData, weights)
-                    Log.d("TAG", topsisResults.toString())
+                    Log.d("after topsis", topsisResults.toString())
+                    Log.d("after topsis", topsisResults.size.toString())
 
                     // Map back to actual candidates using their ID
                     val recommended = topsisResults.mapNotNull { result ->

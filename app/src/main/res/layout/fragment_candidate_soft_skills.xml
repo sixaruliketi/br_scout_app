@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="what are your soft skills?"
+            android:text="@string/what_are_your_soft_skills"
             android:textColor="@color/main_blue"
             android:textSize="18sp"/>
 
@@ -42,7 +42,7 @@
             android:id="@+id/skillSearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search skills"
+            android:hint="@string/search_skills"
             android:inputType="text"
             android:layout_marginTop="20dp" />
 

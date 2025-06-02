@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="enter email"
+        android:hint="@string/enter_email"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -31,7 +31,7 @@
         android:layout_marginVertical="10dp"
         android:drawableTint="@color/main_blue"
         android:drawableEnd="@drawable/ic_eye_closed"
-        android:hint="enter password"
+        android:hint="@string/enter_password"
         android:inputType="textPassword" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/main_blue"
-        android:text="Login"
+        android:text="@string/login"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold" />
@@ -48,7 +48,7 @@
         android:id="@+id/loginForgotPasswordTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="forgot password?"
+        android:text="@string/forgot_password"
         android:layout_gravity="end"
         android:layout_marginVertical="10dp"
         android:textColor="@color/main_blue"/>
@@ -57,7 +57,7 @@
         android:id="@+id/loginGoToRegisterTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="not registered yet? Register Now"
+        android:text="@string/not_registered_yet_register_now"
         android:layout_gravity="end"
         android:textColor="@color/main_blue"/>
 

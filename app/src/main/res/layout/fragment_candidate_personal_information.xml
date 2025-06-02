@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Full Name"
+            android:hint="@string/full_name"
             android:inputType="text" />
 
         <EditText
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/enter_email"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:ems="10"
-            android:hint="Mobile Number"
+            android:hint="@string/mobile_number"
             android:inputType="phone" />
 
         <LinearLayout
@@ -65,7 +65,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Years Of Experience:"
+                android:text="@string/years_of_experience"
                 android:textSize="16sp" />
 
             <EditText
@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Job Title:"
+                android:text="@string/current_job_title"
                 android:textSize="16sp" />
 
             <EditText
@@ -110,7 +110,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Desired Job Title:"
+                android:text="@string/desired_job_title"
                 android:textSize="16sp" />
 
             <EditText
@@ -131,7 +131,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Salary Expectation:"
+                android:text="@string/salary_expectation"
                 android:textSize="16sp" />
 
             <EditText
@@ -150,26 +150,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Available For Remote" />
+            android:text="@string/available_for_remote" />
 
         <CheckBox
             android:id="@+id/isLookingForJobCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Looking For A Job" />
+            android:text="@string/looking_for_a_job" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="bio" />
+            android:text="@string/bio" />
 
         <EditText
             android:id="@+id/bioET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="max 300 symbols"
+            android:hint="@string/max_300_symbols"
             android:maxLength="300" />
 
         <LinearLayout
@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/main_blue"
                 android:paddingHorizontal="5dp"
-                android:text="Upload Photo"
+                android:text="@string/upload_photo"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:text="( optional )" />
+                android:text="@string/optional" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -202,7 +202,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/main_blue"
-            android:text="Next"
+            android:text="@string/next"
             android:layout_marginBottom="120dp"
             android:textAllCaps="false"
             android:textColor="@color/white" />

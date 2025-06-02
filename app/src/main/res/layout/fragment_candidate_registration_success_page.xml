@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thank you for trusting us\nWe will contact you if candidate is selected"
+        android:text="@string/thank_you_for_trusting_us_nwe_will_contact_you_if_candidate_is_selected"
 
         android:layout_marginTop="70dp"
         android:gravity="center"

@@ -100,7 +100,7 @@ object RecommendationSystem {
 
         val weighted = candidates.indices.map { i ->
             mapOf(
-                "salary" to normSalary[i] * weights.getOrDefault("salary", 1.0),
+                "salary" to normSalary[i] * weights.getOrDefault("  salary", 1.0),
                 "looking" to normLooking[i] * weights.getOrDefault("looking", 1.0),
                 "tech" to normTech[i] * weights.getOrDefault("tech", 1.0),
                 "soft" to normSoft[i] * weights.getOrDefault("soft", 1.0),

@@ -31,14 +31,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:hint="Company Name" />
+        android:hint="@string/company_name" />
 
     <EditText
         android:id="@+id/companySizeET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Company Size"
+        android:hint="@string/company_size"
         android:inputType="number" />
 
     <EditText
@@ -47,14 +47,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:hint="Company Address" />
+        android:hint="@string/company_address" />
 
     <EditText
         android:id="@+id/companyFoundedYearET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Company Founded Year"
+        android:hint="@string/company_founded_year"
         android:inputType="date" />
 
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:background="@color/main_blue"
             android:paddingHorizontal="5dp"
-            android:text="Upload Company\nLogo"
+            android:text="@string/upload_company_nlogo"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:text="( optional )" />
+            android:text="@string/optional" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/main_blue"
-        android:text="Register"
+        android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@color/white" />
 </LinearLayout>
