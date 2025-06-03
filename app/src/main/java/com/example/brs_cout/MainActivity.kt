@@ -1,5 +1,6 @@
 package com.example.brs_cout
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.brs_cout.app.LocaleManager
 import com.example.brs_cout.databinding.ActivityMainBinding
 import com.example.brs_cout.onBoarding.LoginFragment
 import com.google.android.material.navigation.NavigationView
@@ -36,5 +38,9 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.main, LoginFragment())
                 .commit()
         }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.setLocale(it) })
     }
 }

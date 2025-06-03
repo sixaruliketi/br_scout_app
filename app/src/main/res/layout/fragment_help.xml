@@ -1,25 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewHelp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".drawerMenu.HelpFragment">
+    android:padding="16dp"
+    tools:context=".drawerMenu.HelpFragment"
+    android:background="#FFFFFF">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="help"
-        android:textSize="64sp"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textColor="@color/main_blue"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="coming soon!"
-        android:textSize="40sp"
-        android:textColor="@color/main_blue"/>
-</LinearLayout>
+        <!-- Page Title -->
+        <TextView
+            android:id="@+id/tvHelpTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/help_amp_support"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- FAQ Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/frequently_asked_questions"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <!-- Account Questions -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_amp_registration"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/faq_list" />
+
+        <!-- Job and Candidate Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/job_vacancies_amp_candidates"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/post_vacancy_question" />
+
+        <!-- Recommendation System -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommendation_system"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/how_does_br_scout_recommend_candidates_n_can_i_customize_the_hiring_criteria" />
+
+        <!-- Troubleshooting -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/troubleshooting"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/the_app_is_crashing_text" />
+
+        <!-- Contact Support -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_support"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_support_text"
+            android:layout_marginBottom="24dp" />
+
+    </LinearLayout>
+</ScrollView>

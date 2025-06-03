@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".drawerMenu.SettingsFragment">
+
+    <!-- Account Settings -->
+    <PreferenceCategory android:title="@string/account">
+        <EditTextPreference
+            android:key="username"
+            android:title="@string/username"
+            android:summary="@string/change_your_display_name" />
+
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            android:title="@string/enable_notifications"
+            android:summary="@string/get_updates_on_new_candidates_or_vacancies" />
+    </PreferenceCategory>
+
+    <!-- App Settings -->
+    <PreferenceCategory android:title="@string/app_settings">
+        <SwitchPreferenceCompat
+            android:key="dark_mode"
+            android:title="@string/dark_mode"
+            android:summary="@string/switch_between_light_and_dark_themes" />
+
+        <ListPreference
+            android:key="language"
+            android:title="@string/app_language"
+            android:summary="@string/choose_your_preferred_language"
+            android:entries="@array/language_options"
+            android:entryValues="@array/language_values"
+            android:defaultValue="en" />
+    </PreferenceCategory>
+
+    <!-- Help and Legal -->
+    <PreferenceCategory android:title="@string/support">
+        <Preference
+            android:key="help"
+            android:title="@string/help_faq"
+            android:summary="@string/find_answers_to_common_questions" />
+
+        <Preference
+            android:key="about"
+            android:title="@string/about_us"
+            android:summary="@string/learn_more_about_br_scout" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

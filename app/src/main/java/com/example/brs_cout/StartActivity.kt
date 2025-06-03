@@ -13,6 +13,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment // Import Fragment
+import com.example.brs_cout.app.LocaleManager
 import com.example.brs_cout.databinding.ActivityStartBinding
 import com.example.brs_cout.drawerMenu.AboutUsFragment
 import com.example.brs_cout.drawerMenu.ContactUsFragment
@@ -159,5 +160,9 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.setLocale(it) })
     }
 }

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FDF6F0"
     tools:context=".onBoarding.candidate.CandidateRegistrationSuccessPageFragment">
 
     <ImageView
@@ -32,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_close"
-        android:backgroundTint="#FB7185"
+        android:backgroundTint="@color/main_blue"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"/>
 </LinearLayout>

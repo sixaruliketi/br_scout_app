@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="20dp"
     android:orientation="vertical"
     tools:context=".drawerMenu.ContactUsFragment"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
@@ -18,85 +20,85 @@
         android:textSize="19sp"
         android:text="@string/contact_us"
         android:textStyle="bold"
-        android:textColor="@color/main_blue"/>
+        android:textColor="@color/main_blue" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/we_d_love_to_hear_from_you_whether_you_have_a_question_feedback_or_just_want_to_say_hello_feel_free_to_reach_out"
+        android:text="@string/feedback_text"
         android:textColor="@color/main_blue"
         android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="📧 Email: contact@brscoutapp.com"
+        android:text="@string/email_contact_brscoutapp_com"
         android:textColor="@color/main_blue"
         android:layout_marginTop="25dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="📞 Phone: +1 (555) 123-4567"
+        android:text="@string/phone_1_555_123_4567"
         android:textColor="@color/main_blue"
         android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="🌐 Website: www.brscoutapp.com"-->
+    <!--        android:textColor="@color/main_blue"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:textSize="16sp"/>-->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="🌐 Website: www.brscoutapp.com"
+        android:text="@string/address_123_talent_street_innovation_city_ca_90001"
         android:textColor="@color/main_blue"
         android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="📍 Address: 123 Talent Street, Innovation City, CA 90001"
-        android:textColor="@color/main_blue"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Follow us on social media:"
+        android:text="@string/follow_us_on_social_media"
         android:textColor="@color/main_blue"
         android:layout_marginTop="25dp"
         android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
-        android:drawableStart="@drawable/instagram_logo"
-        android:text="Instagram: @brscoutapp"
+        android:text="@string/instagram_brscoutapp"
         android:textColor="@color/main_blue"
         android:layout_marginTop="20dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        app:drawableStartCompat="@drawable/instagram_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
-        android:drawableStart="@drawable/facebook_logo"
-        android:text="Facebook: facebook.com/brscoutapp"
+        android:text="@string/facebook_facebook_com_brscoutapp"
         android:textColor="@color/main_blue"
         android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        app:drawableStartCompat="@drawable/facebook_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
-        android:drawableStart="@drawable/linkedin_logo"
-        android:text="LinkedIn: linkedin.com/company/brscout"
+        android:text="@string/linkedin_linkedin_com_company_brscout"
         android:textColor="@color/main_blue"
         android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        app:drawableStartCompat="@drawable/linkedin_logo" />
 
 </LinearLayout>
