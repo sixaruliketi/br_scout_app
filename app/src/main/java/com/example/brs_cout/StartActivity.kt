@@ -147,10 +147,10 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_about -> loadFragment(AboutUsFragment(), "about_tag", addToBackStack = true)
-            R.id.nav_help -> loadFragment(HelpFragment(), "help_tag", addToBackStack = true)
-            R.id.nav_settings -> loadFragment(SettingsFragment(), "settings_tag", addToBackStack = true)
-            R.id.nav_contact -> loadFragment(ContactUsFragment(), "contact_tag", addToBackStack = true)
+            R.id.nav_about -> loadFragment(AboutUsFragment(), "about_tag", addToBackStack = false)
+            R.id.nav_help -> loadFragment(HelpFragment(), "help_tag", addToBackStack = false)
+            R.id.nav_settings -> loadFragment(SettingsFragment(), "settings_tag", addToBackStack = false)
+            R.id.nav_contact -> loadFragment(ContactUsFragment(), "contact_tag", addToBackStack = false)
             R.id.nav_logout -> {
                 auth.signOut()
                 val intent = Intent(this, MainActivity::class.java)

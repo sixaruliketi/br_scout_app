@@ -34,11 +34,14 @@ class MainActivity : AppCompatActivity() {
             finish()
         } else {
             // Not logged in, show login fragment
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.main, LoginFragment())
-                .commit()
+            supportFragmentManager.beginTransaction().replace(R.id.main, LoginFragment()).commit()
         }
+
+
+
     }
+
+
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase?.let { LocaleManager.setLocale(it) })

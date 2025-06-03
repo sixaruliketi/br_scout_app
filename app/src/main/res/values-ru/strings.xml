@@ -105,7 +105,7 @@
     <string name="find_answers_to_common_questions">Найдите ответы на часто задаваемые вопросы</string>
     <string name="learn_more_about_br_scout">Узнайте больше о BR Scout</string>
     <string name="switch_between_light_and_dark_themes">Переключение между светлой и тёмной темами</string>
-    <string name="get_updates_on_new_candidates_or_vacancies">Получайте обновления о новых кандидатах или вакансиях</string>
+    <string name="get_updates_on_new_candidates">Получайте обновления о новых кандидатах</string>
     <string name="username">Имя пользователя</string>
     <string name="dark_mode">Тёмный режим</string>
     <string name="app_language">Язык приложения</string>

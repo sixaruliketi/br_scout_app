@@ -11,10 +11,10 @@
             android:title="@string/username"
             android:summary="@string/change_your_display_name" />
 
-        <SwitchPreferenceCompat
-            android:key="notifications"
-            android:title="@string/enable_notifications"
-            android:summary="@string/get_updates_on_new_candidates_or_vacancies" />
+<!--        <SwitchPreferenceCompat-->
+<!--            android:key="notifications"-->
+<!--            android:title="@string/enable_notifications"-->
+<!--            android:summary="@string/get_updates_on_new_candidates" />-->
     </PreferenceCategory>
 
     <!-- App Settings -->
