@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Name"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/profileImage"
@@ -53,7 +53,7 @@
         android:layout_marginTop="5dp"
         android:paddingHorizontal="15dp"
         android:text="min description / Android Developer / (year of foundation / company size)"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="@id/profileName"
         app:layout_constraintStart_toStartOf="@id/profileName"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about"
-            android:textColor="@color/main_blue"
+            android:textColor="?android:textColorPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -88,7 +88,7 @@
             android:lineSpacingExtra="4dp"
             android:maxLines="5"
             android:text="this profile is this and this, and it does this and that, also does lot's of other stuff that you don't need to know."
-            android:textColor="@color/main_blue"
+            android:textColor="?android:textColorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="@string/vacancies_posted"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/linearLayout2"

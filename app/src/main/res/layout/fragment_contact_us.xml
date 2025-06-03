@@ -20,13 +20,13 @@
         android:textSize="19sp"
         android:text="@string/contact_us"
         android:textStyle="bold"
-        android:textColor="@color/main_blue" />
+        android:textColor="?android:textColorPrimary" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/feedback_text"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:layout_marginTop="10dp"
         android:textSize="16sp" />
 
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/email_contact_brscoutapp_com"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:layout_marginTop="25dp"
         android:textSize="16sp" />
 
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/phone_1_555_123_4567"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:layout_marginTop="10dp"
         android:textSize="16sp" />
 
@@ -50,7 +50,7 @@
     <!--        android:layout_width="wrap_content"-->
     <!--        android:layout_height="wrap_content"-->
     <!--        android:text="🌐 Website: www.brscoutapp.com"-->
-    <!--        android:textColor="@color/main_blue"-->
+    <!--        android:textColor="?android:textColorPrimary"-->
     <!--        android:layout_marginTop="10dp"-->
     <!--        android:textSize="16sp"/>-->
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/address_123_talent_street_innovation_city_ca_90001"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:layout_marginTop="10dp"
         android:textSize="16sp" />
 
@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/follow_us_on_social_media"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:layout_marginTop="25dp"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
         android:text="@string/instagram_brscoutapp"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:layout_marginTop="20dp"
         android:textSize="16sp"
         app:drawableStartCompat="@drawable/instagram_logo" />
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
         android:text="@string/facebook_facebook_com_brscoutapp"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:layout_marginTop="10dp"
         android:textSize="16sp"
         app:drawableStartCompat="@drawable/facebook_logo" />
@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
         android:text="@string/linkedin_linkedin_com_company_brscout"
-        android:textColor="@color/main_blue"
+        android:textColor="?android:textColorPrimary"
         android:layout_marginTop="10dp"
         android:textSize="16sp"
         app:drawableStartCompat="@drawable/linkedin_logo" />

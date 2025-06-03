@@ -2,7 +2,11 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.BRScoutApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/main_blue</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:itemBackground">@color/item_background</item>
     </style>
 
     <style name="Theme.BRScoutApp" parent="Base.Theme.BRScoutApp" />
@@ -10,4 +14,6 @@
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">50%</item>
     </style>
+
+    <color name="white">#FFFFFFFF</color>
 </resources>

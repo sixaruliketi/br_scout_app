@@ -14,12 +14,12 @@
         android:textSize="64sp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:textColor="@color/main_blue"/>
+        android:textColor="@color/colorPrimary"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="coming soon!"
         android:textSize="40sp"
-        android:textColor="@color/main_blue"/>
+        android:textColor="@color/colorPrimary"/>
 </LinearLayout>

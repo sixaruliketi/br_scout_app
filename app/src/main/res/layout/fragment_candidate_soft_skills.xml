@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/what_are_your_soft_skills"
-            android:textColor="@color/main_blue"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"/>
 
         <AutoCompleteTextView
@@ -61,10 +61,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/main_blue"
+            android:background="@color/colorPrimary"
             android:text="Next"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/colorOnPrimary"
             android:layout_marginBottom="120dp"/>
 
     </LinearLayout>

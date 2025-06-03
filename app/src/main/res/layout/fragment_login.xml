@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginVertical="10dp"
-        android:drawableTint="@color/main_blue"
+        android:drawableTint="@color/colorPrimary"
         android:drawableEnd="@drawable/ic_eye_closed"
         android:hint="@string/enter_password"
         android:inputType="textPassword" />
@@ -38,10 +38,10 @@
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/main_blue"
+        android:background="@color/colorPrimary"
         android:text="@string/login"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/colorOnPrimary"
         android:textStyle="bold" />
 
     <TextView
@@ -51,7 +51,7 @@
         android:text="@string/forgot_password"
         android:layout_gravity="end"
         android:layout_marginVertical="10dp"
-        android:textColor="@color/main_blue"/>
+        android:textColor="@color/colorPrimary"/>
 
     <TextView
         android:id="@+id/loginGoToRegisterTV"
@@ -59,6 +59,6 @@
         android:layout_height="wrap_content"
         android:text="@string/not_registered_yet_register_now"
         android:layout_gravity="end"
-        android:textColor="@color/main_blue"/>
+        android:textColor="@color/colorPrimary"/>
 
 </LinearLayout>

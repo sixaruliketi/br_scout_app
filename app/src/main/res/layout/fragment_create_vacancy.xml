@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:text="@string/job_details"
-            android:textColor="@color/main_blue"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/appLogo"
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/job_title"
-                android:textColor="@color/main_blue"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <EditText
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/job_description"
-            android:textColor="@color/main_blue"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout"
             app:layout_constraintTop_toBottomOf="@id/vacancyLinearLayout" />
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/select_required_technical_skills"
-            android:textColor="@color/main_blue"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout2"
             app:layout_constraintTop_toBottomOf="@id/vacancyLinearLayout2" />
@@ -149,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/select_required_soft_skills"
-            android:textColor="@color/main_blue"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/selectedRequiredTechnicalSkillsChipGroup"
             app:layout_constraintTop_toBottomOf="@id/selectedRequiredTechnicalSkillsChipGroup" />
@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/select_required_languages"
-            android:textColor="@color/main_blue"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/selectedRequiredSoftSkillsChipGroup"
             app:layout_constraintTop_toBottomOf="@id/selectedRequiredSoftSkillsChipGroup" />
@@ -223,7 +223,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/deadline"
-                android:textColor="@color/main_blue"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <EditText
@@ -244,10 +244,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="120dp"
-            android:background="@color/main_blue"
+            android:background="@color/colorPrimary"
             android:text="@string/post"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/colorOnPrimary"
             app:layout_constraintEnd_toEndOf="@id/vacancyLinearLayout3"
             app:layout_constraintStart_toStartOf="@id/vacancyLinearLayout3"
             app:layout_constraintTop_toBottomOf="@id/vacancyLinearLayout3" />

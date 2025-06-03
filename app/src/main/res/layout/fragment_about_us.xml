@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/brief_description_of_the_app"
-            android:textColor="@color/main_blue"
+            android:textColor="?android:textColorPrimary"
             android:textStyle="bold"
             android:textSize="16sp"/>
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/main_blue"
+            android:textColor="?android:textColorPrimary"
             android:text="@string/description_of_the_app_text"/>
 
         <TextView
@@ -39,21 +39,21 @@
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginTop="25dp"
-            android:textColor="@color/main_blue"/>
+            android:textColor="?android:textColorPrimary"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/main_blue"
+            android:textColor="?android:textColorPrimary"
             android:text="@string/our_mission_text"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/our_story"
-            android:textColor="@color/main_blue"
+            android:textColor="?android:textColorPrimary"
             android:textSize="16sp"
             android:layout_marginTop="25dp"
             android:textStyle="bold"/>
@@ -65,12 +65,12 @@
             android:textSize="16sp"
             android:lineSpacingExtra="1dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/main_blue"/>
+            android:textColor="?android:textColorPrimary"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/main_blue"
+            android:textColor="?android:textColorPrimary"
             android:textStyle="bold"
             android:layout_marginTop="25dp"
             android:textSize="16sp"
@@ -84,6 +84,6 @@
             android:textSize="16sp"
             android:lineSpacingExtra="1dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/main_blue"/>
+            android:textColor="?android:textColorPrimary"/>
     </LinearLayout>
 </ScrollView>

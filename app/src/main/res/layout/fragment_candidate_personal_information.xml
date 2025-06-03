@@ -182,11 +182,11 @@
                 android:id="@+id/uploadPhotoBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/main_blue"
+                android:background="@color/colorPrimary"
                 android:paddingHorizontal="5dp"
                 android:text="@string/upload_photo"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/colorOnPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -201,10 +201,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/main_blue"
+            android:background="@color/colorPrimary"
             android:text="@string/next"
             android:layout_marginBottom="120dp"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorOnPrimary" />
     </LinearLayout>
 </ScrollView>
