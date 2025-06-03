@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.brs_cout.R
 import com.example.brs_cout.adapters.CandidateAdapter
 import com.example.brs_cout.models.Candidate
-import com.example.brs_cout.models.ListItem
 import com.example.brs_cout.models.Vacancy
 import com.example.brs_cout.recommendationSystem.CandidateScoreData
 import com.example.brs_cout.recommendationSystem.RecommendationSystem
@@ -69,7 +68,7 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
 
                     Log.d("before topsis", topPairs.size.toString())
                     if (topPairs.isEmpty()) {
-                        recyclerView.adapter = CandidateAdapter(emptyList())
+                        recyclerView.adapter = CandidateAdapter(emptyList()) { }
                         Log.d("TAG", "No matching candidates found")
                         return@getAllCandidatesFromFirebase
                     }
@@ -105,12 +104,19 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
                     }
                     Log.d("TAG", recommended.toString())
 
-                    recyclerView.adapter = CandidateAdapter(recommended)
+                    recyclerView.adapter = CandidateAdapter(recommended) { candidate ->
+                        val fragment = CandidateDetailsFragment.newInstance(candidate)
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, fragment)
+                            .addToBackStack(null)
+                            .commit()
+                        dismiss()
+                    }
                     Log.d("TAG", "Recommended candidates loaded")
 
                 }
             } else {
-                recyclerView.adapter = CandidateAdapter(emptyList())
+                recyclerView.adapter = CandidateAdapter(emptyList()) { }
                 Log.d("TAG", "Vacancy not found")
             }
         }

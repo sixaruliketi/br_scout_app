@@ -1,5 +1,7 @@
 package com.example.brs_cout.models
 
+import java.io.Serializable
+
 data class Candidate(
     val id: String? = null, // კანდიდატის უნიკალური ID
     val fullName: String? = null, // სახელი
@@ -21,4 +23,4 @@ data class Candidate(
 
     //for me
     val verified: Boolean ?= false
-)
+): Serializable

@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brs_cout.R
 import com.example.brs_cout.adapters.CandidateAdapter
 import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentHomeBinding
 import com.example.brs_cout.models.Candidate
+import com.example.brs_cout.profile.CandidateDetailsFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -33,7 +35,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun loadCandidates(recyclerView: RecyclerView) {
 
         getAllCandidatesFromFirebase { allCandidates ->
-            recyclerView.adapter = CandidateAdapter(allCandidates)
+            recyclerView.adapter = CandidateAdapter(allCandidates) { candidate ->
+                parentFragmentManager.beginTransaction().replace(R.id.fragment_container,CandidateDetailsFragment.newInstance(candidate)).commit()
+            }
             Log.d("TAG", "recommended")
         }
 

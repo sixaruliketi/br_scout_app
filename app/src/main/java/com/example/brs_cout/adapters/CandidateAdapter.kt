@@ -9,16 +9,22 @@ import com.example.brs_cout.R
 import com.example.brs_cout.databinding.ItemCandidateBinding
 import com.example.brs_cout.models.Candidate
 
-class CandidateAdapter(private val candidates: List<Candidate>) :
-    RecyclerView.Adapter<CandidateAdapter.CandidateViewHolder>() {
+class CandidateAdapter(
+    private val candidates: List<Candidate>,
+    private val onItemClick: (Candidate) -> Unit
+) : RecyclerView.Adapter<CandidateAdapter.CandidateViewHolder>() {
 
     class CandidateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ItemCandidateBinding.bind(itemView)
-        fun bind(candidate: Candidate) = with(binding) {
+
+        fun bind(candidate: Candidate, onItemClick: (Candidate) -> Unit) = with(binding) {
             nameTextView.text = candidate.fullName
             jobTitleTV.text = candidate.currentJobTitle
             Glide.with(itemView).load(candidate.profilePictureUrl).into(candidateProfileImage)
 
+            root.setOnClickListener {
+                onItemClick(candidate)
+            }
         }
     }
 
@@ -28,7 +34,7 @@ class CandidateAdapter(private val candidates: List<Candidate>) :
     }
 
     override fun onBindViewHolder(holder: CandidateViewHolder, position: Int) {
-        holder.bind(candidates[position])
+        holder.bind(candidates[position], onItemClick)
     }
 
     override fun getItemCount(): Int = candidates.size
