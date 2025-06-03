@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         getAllCandidatesFromFirebase { allCandidates ->
             recyclerView.adapter = CandidateAdapter(allCandidates) { candidate ->
-                parentFragmentManager.beginTransaction().replace(R.id.fragment_container,CandidateDetailsFragment.newInstance(candidate)).commit()
+                parentFragmentManager.beginTransaction().replace(R.id.fragment_container,CandidateDetailsFragment.newInstance(candidate))    .addToBackStack(null).commit()
             }
             Log.d("TAG", "recommended")
         }

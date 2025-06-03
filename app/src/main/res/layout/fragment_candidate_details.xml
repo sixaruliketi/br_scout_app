@@ -1,14 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile.CandidateDetailsFragment">
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_logo" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Name"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: "
+                android:textColor="?android:textColorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="?android:textColorPrimary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Job Title: "
+                android:textColor="?android:textColorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/jobTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Job Title"
+                android:textColor="?android:textColorPrimary" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Bio"
+            android:textStyle="bold"
+            android:textColor="?android:textColorPrimary" />
+
+        <TextView
+            android:id="@+id/bioTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bio"
+            android:textColor="?android:textColorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Experience"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textColor="?android:textColorPrimary" />
+
+        <TextView
+            android:id="@+id/experienceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="experience"
+            android:textColor="?android:textColorPrimary" />
+    </LinearLayout>
+</ScrollView>
