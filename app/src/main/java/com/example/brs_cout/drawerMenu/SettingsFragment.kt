@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.preference.ListPreference
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.example.brs_cout.R
@@ -14,7 +15,33 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         changeLanguage()
         changeTheme()
+        gotToHelpPage()
+        aboutUs()
     }
+
+    private fun aboutUs() {
+        val aboutUsPref: Preference? = findPreference("about")
+        aboutUsPref?.setOnPreferenceClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, AboutUsFragment())
+                .addToBackStack(null)
+                .commit()
+            true
+        }
+    }
+
+    private fun gotToHelpPage(){
+        val helpPref: Preference? = findPreference("help")
+        helpPref?.setOnPreferenceClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, HelpFragment())
+                .addToBackStack(null)
+                .commit()
+            true
+        }
+    }
+
+
 
     private fun changeTheme(){
 
