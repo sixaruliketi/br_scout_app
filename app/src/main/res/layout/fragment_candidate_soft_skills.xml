@@ -28,7 +28,8 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@mipmap/ic_launcher_foreground" />
+                android:padding="50dp"
+                android:src="@drawable/br_scout_logo" />
         </LinearLayout>
 
         <TextView

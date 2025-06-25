@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorOnPrimary"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".onBoarding.UserTypeFragment">
@@ -15,7 +14,8 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="40dp"
-        android:src="@mipmap/ic_launcher_foreground"
+        android:padding="50dp"
+        android:src="@drawable/br_scout_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

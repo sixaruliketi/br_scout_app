@@ -110,6 +110,13 @@
     <string name="dark_mode">ღამის რეჟიმი</string>
     <string name="app_language">აპლიკაციის ენა</string>
     <string name="help_faq"><![CDATA[დახმარება და ხშირად დასმული კითხვები]]></string>
-
+    <string-array name="industries_array">
+        <item>აირჩიეთ ინდუსტრია</item>
+        <item>ტექნოლოგია</item>
+        <item>ჯანდაცვა</item>
+        <item>ფინანსები</item>
+        <item>წარმოება</item>
+        <item>განათლება</item>
+    </string-array>
 
 </resources>

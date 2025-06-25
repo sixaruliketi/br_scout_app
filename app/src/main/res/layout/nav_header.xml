@@ -9,7 +9,9 @@
     android:background="@color/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_width="80dp"
+        android:padding="20dp"
+        android:layout_height="80dp"
+        android:src="@drawable/br_scout_logo"
+        android:background="@color/white"/>
 </LinearLayout>

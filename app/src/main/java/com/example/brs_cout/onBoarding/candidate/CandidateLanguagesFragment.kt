@@ -133,9 +133,8 @@ class CandidateLanguagesFragment : BaseFragment<FragmentCandidateLanguagesBindin
 
     override fun init() = with(binding) {
 
-        val ref = FirebaseDatabase.getInstance().getReference("candidates")
 
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+        db.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (childSnapshot in snapshot.children) {
                     val id = childSnapshot.key  // ეს არის ID

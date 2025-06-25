@@ -110,5 +110,12 @@
     <string name="dark_mode">Тёмный режим</string>
     <string name="app_language">Язык приложения</string>
     <string name="help_faq"><![CDATA[Помощь и часто задаваемые вопросы]]></string>
-
+    <string-array name="industries_array">
+        <item>Выберите отрасль</item>
+        <item>Технологии</item>
+        <item>Здравоохранение</item>
+        <item>Финансы</item>
+        <item>Производство</item>
+        <item>Образование</item>
+    </string-array>
 </resources>

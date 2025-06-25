@@ -1,8 +1,6 @@
 package com.example.brs_cout.home
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,6 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.brs_cout.base.BaseFragment
 import com.example.brs_cout.databinding.FragmentCreateVacancyBinding
 import com.example.brs_cout.models.ListItem
 import com.example.brs_cout.models.Vacancy
@@ -18,11 +15,6 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import java.sql.Time
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 class CreateVacancyFragment : DialogFragment() {
 

@@ -12,8 +12,7 @@ import com.example.brs_cout.R
 import com.example.brs_cout.adapters.CandidateAdapter
 import com.example.brs_cout.models.Candidate
 import com.example.brs_cout.models.Vacancy
-import com.example.brs_cout.recommendationSystem.CandidateScoreData
-import com.example.brs_cout.recommendationSystem.RecommendationSystem
+import com.example.brs_cout.recommendationSystem.NewRecommendationSystem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,8 +22,7 @@ import com.google.firebase.database.ValueEventListener
 class RecommendedCandidatesDialogFragment : DialogFragment() {
 
     private var vacancyId: String? = null
-
-    val companyID = FirebaseAuth.getInstance().currentUser!!.uid
+    private val companyID = FirebaseAuth.getInstance().currentUser!!.uid
 
     companion object {
         fun newInstance(vacancyId: String): RecommendedCandidatesDialogFragment {
@@ -64,45 +62,37 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
             if (vacancy != null) {
                 getAllCandidatesFromFirebase { allCandidates ->
 
-                    val topPairs = RecommendationSystem.findTopCandidates(allCandidates, vacancy)
+                    // Step 1: Filter top 20 using Cosine Similarity
+                    val topPairs = NewRecommendationSystem.getTop20Candidates(vacancy,allCandidates)
+                    Log.d("TAG", "top pairs size: ${topPairs.size}\n$topPairs")
 
-                    Log.d("before topsis", topPairs.size.toString())
                     if (topPairs.isEmpty()) {
                         recyclerView.adapter = CandidateAdapter(emptyList()) { }
                         Log.d("TAG", "No matching candidates found")
                         return@getAllCandidatesFromFirebase
                     }
 
-                    val scoreData = topPairs.map { (candidate, matchScore) ->
-                        CandidateScoreData(
-                            id = candidate.id ?: "",
-                            salaryExpectation = candidate.salaryExpectation ?: Double.MAX_VALUE,
-                            isLookingForJob = candidate.isLookingForJob ?: false,
-                            techSkillMatch = matchScore * 50, // match %
-                            softSkillMatch = candidate.softSkills?.size?.coerceAtMost(10)?.times(10.0) ?: 0.0,
-                            experience = candidate.yearsOfExperience ?: 0
+                    // Step 2: Prepare data for TOPSIS
+                    val topsisInput = topPairs.map { (candidate, similarity) ->
+                        NewRecommendationSystem.TopsisCandidate(
+                            candidate = candidate,
+                            similarity = similarity,
+                            experience = candidate.yearsOfExperience ?: 0,
+                            salary = candidate.salaryExpectation ?: Double.MAX_VALUE,
+                            daysToStart = 0 // ამ ველს რეალური მონაცემები სჭირდება
                         )
                     }
+                    Log.d("TAG", "data for TOPSIS: $topsisInput")
 
-                    Log.d("TAG", scoreData.toString())
+                    // Step 3: Run TOPSIS
+                    val top5 = NewRecommendationSystem.topsisRank(topsisInput)
+                    Log.d("TAG", "top5: $top5")
 
-                    val weights = mapOf(
-                        "salary" to 0.2,
-                        "looking" to 0.0,
-                        "tech" to 0.3,
-                        "soft" to 0.3,
-                        "exp" to 0.1
-                    )
-
-                    val topsisResults = RecommendationSystem.topsisRank(scoreData, weights)
-                    Log.d("after topsis", topsisResults.toString())
-                    Log.d("after topsis", topsisResults.size.toString())
-
-                    // Map back to actual candidates using their ID
-                    val recommended = topsisResults.mapNotNull { result ->
-                        allCandidates.find { it.id == result.candidateId }
+                    // Step 4: Map back to Candidate objects
+                    val recommended = top5.mapNotNull { (candidate, _) ->
+                        allCandidates.find { it.id == candidate.id }
                     }
-                    Log.d("TAG", recommended.toString())
+                    Log.d("TAG", "recommended: $recommended")
 
                     recyclerView.adapter = CandidateAdapter(recommended) { candidate ->
                         val fragment = CandidateDetailsFragment.newInstance(candidate)
@@ -112,8 +102,8 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
                             .commit()
                         dismiss()
                     }
-                    Log.d("TAG", "Recommended candidates loaded")
 
+                    Log.d("TAG", "Recommended candidates loaded")
                 }
             } else {
                 recyclerView.adapter = CandidateAdapter(emptyList()) { }
@@ -134,7 +124,6 @@ class RecommendedCandidatesDialogFragment : DialogFragment() {
                     }
                 }
                 onComplete(candidates)
-                Log.d("TAG", "Get All Candidates From Firebase")
             }
 
             override fun onCancelled(error: DatabaseError) {
