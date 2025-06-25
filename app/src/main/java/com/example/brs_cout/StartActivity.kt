@@ -99,10 +99,10 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                     loadFragment(HomeFragment(), "home_tag", addToBackStack = true)
                     true
                 }
-                R.id.searchPage -> {
-                    loadFragment(SearchFragment(), "search_tag", addToBackStack = true)
-                    true
-                }
+//                R.id.searchPage -> {
+//                    loadFragment(SearchFragment(), "search_tag", addToBackStack = true)
+//                    true
+//                }
                 R.id.profilePage -> {
                     loadFragment(ProfileFragment(), "profile_tag", addToBackStack = true)
                     true
