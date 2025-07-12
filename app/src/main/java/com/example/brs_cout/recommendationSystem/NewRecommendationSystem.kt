@@ -53,8 +53,8 @@ object NewRecommendationSystem {
             vacancy.requiredLanguages?.mapNotNull { it.id } ?: emptyList()
         )
 
-        // საერთო ქულა: წონები — tech 0.5, soft 0.3, lang 0.2
-        return (techSim * 0.5) + (softSim * 0.3) + (langSim * 0.2)
+        // საერთო ქულა: წონები — tech 0.4, soft 0.4, lang 0.2
+        return (techSim * 0.4) + (softSim * 0.4) + (langSim * 0.2)
     }
 
     /**
